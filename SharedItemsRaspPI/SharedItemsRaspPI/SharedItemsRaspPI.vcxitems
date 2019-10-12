@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{39efb207-c331-4144-b4fd-bbfde7970980}</ItemsProjectGuid>
+    <ItemsProjectName>SharedItems</ItemsProjectName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DifferentialDrive.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Encoder.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Motor.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Odometry.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DifferentialDrive.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Encoder.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Motor.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Odometry.h" />
+  </ItemGroup>
+</Project>

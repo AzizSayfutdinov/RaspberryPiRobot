@@ -1,5 +1,7 @@
 #pragma once
-class SimMotor
+#include "Motor.h"
+
+class SimMotor: public Motor
 {
 private:
 	double power = 0;

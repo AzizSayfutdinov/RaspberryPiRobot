@@ -21,7 +21,7 @@ void SimMotor::setPower(double power) {
 			cout << "Power has to be between 0 .. 100. " << endl;
 		}
 	}
-	catch (_exception & e) {
+	catch (_exception& e) {
 		// TODO: implement proper exception
 	}
 

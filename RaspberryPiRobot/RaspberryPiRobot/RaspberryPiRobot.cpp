@@ -7,39 +7,50 @@
 #include "SimMotor.h"
 #include "SimEncoder.h"
 
+#include "DifferentialDrive.h"
+#include "Odometry.h"
+
 using namespace std;
 
-void testSimEncoder(SimEncoder* encoder, SimMotor* motor) {
+// Test functions
+void test_drive(DifferentialDrive* drive, Odometry* odometry);
 
-	int timeSteps = 100;
-	int timePassed = 0;
-
-	for (int i = 0; i <= 30; i++) {
-
-		cout << timePassed << "ms: " << encoder->getTicks() << " Ticks" << endl;
-		if (i == 10) {
-			motor->setPower(50);
-		}
-		if (i == 20) {
-			motor->setPower(100);
-		}
-		this_thread::sleep_for(chrono::milliseconds(timeSteps));
-		timePassed += timeSteps;
-
-	}
-}
 
 int main()
 {
 	std::cout << "------ Testing SimEncoder -----\n";
 
 	SimMotor* motorLeft = new SimMotor();
+	SimMotor* motorRight = new SimMotor();
 	SimEncoder* simEncoderLeft = new SimEncoder(motorLeft);
+	SimEncoder* simEncoderRight = new SimEncoder(motorRight);
 
-	testSimEncoder(simEncoderLeft, motorLeft);
+	// simEncoderLeft->testSimEncoder();
 
+	// Test drive 
+	DifferentialDrive* diffDrive = new DifferentialDrive(motorLeft, motorRight);
+	Odometry* odometry = new Odometry(simEncoderLeft, simEncoderRight);
+	test_drive(diffDrive, odometry);
 
 	return 0;
+}
+
+
+// Test functions
+void test_drive(DifferentialDrive* drive, Odometry* odometry) {
+	double distance = 0;
+	int timeSteps = 100;
+	odometry->reset();
+	drive->moveForward();
+
+	while (distance < 100) {
+
+		cout << distance << " mm" << endl;
+		distance = odometry->getDistance();
+		this_thread::sleep_for(chrono::milliseconds(timeSteps));
+		distance = odometry->getDistance();
+
+	}
 }
 
 
