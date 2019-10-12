@@ -1,0 +1,6 @@
+﻿  RaspberryPiRobot.cpp
+  SimEncoder.cpp
+  SimMotor.cpp
+  Generating Code...
+D:\FHV\Master\Embedded Systems I\project\RaspberryPiRobot\RaspberryPiRobot\RaspberryPiRobot\SimMotor.cpp(24,22): warning C4101: 'e': unreferenced local variable
+  RaspberryPiRobot.vcxproj -> D:\FHV\Master\Embedded Systems I\project\RaspberryPiRobot\RaspberryPiRobot\x64\Debug\RaspberryPiRobot.exe

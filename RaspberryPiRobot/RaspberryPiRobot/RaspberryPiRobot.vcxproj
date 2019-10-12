@@ -152,6 +152,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="RaspberryPiRobot.cpp" />
+    <ClCompile Include="SimEncoder.cpp" />
+    <ClCompile Include="SimMotor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SimEncoder.h" />
+    <ClInclude Include="SimMotor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
