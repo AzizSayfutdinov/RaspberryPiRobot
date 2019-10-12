@@ -5,28 +5,55 @@ VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SharedItems", "SharedItemsRaspPI\SharedItemsRaspPI.vcxitems", "{39EFB207-C331-4144-B4FD-BBFDE7970980}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RaspberryPiRobot", "..\RaspberryPiRobot\RaspberryPiRobot\RaspberryPiRobot.vcxproj", "{1B671EAE-9E8E-4A72-A8E8-5A83927FD434}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CRO_windowsApplication", "..\WindowsApplication\RaspberryPiRobot\RaspberryPiRobot.vcxproj", "{1B671EAE-9E8E-4A72-A8E8-5A83927FD434}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RaspberryPiCtrl", "..\RaspberryPiCtrl\RaspberryPiCtrl\RaspberryPiCtrl.vcxproj", "{21699B57-7B19-4939-9A73-07ED861F1D39}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedItemsRaspPI\SharedItemsRaspPI.vcxitems*{1b671eae-9e8e-4a72-a8e8-5a83927fd434}*SharedItemsImports = 4
+		SharedItemsRaspPI\SharedItemsRaspPI.vcxitems*{21699b57-7b19-4939-9a73-07ed861f1d39}*SharedItemsImports = 4
 		SharedItemsRaspPI\SharedItemsRaspPI.vcxitems*{39efb207-c331-4144-b4fd-bbfde7970980}*SharedItemsImports = 9
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|ARM64 = Debug|ARM64
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|ARM64 = Release|ARM64
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B671EAE-9E8E-4A72-A8E8-5A83927FD434}.Debug|ARM.ActiveCfg = Debug|Win32
+		{1B671EAE-9E8E-4A72-A8E8-5A83927FD434}.Debug|ARM64.ActiveCfg = Debug|Win32
 		{1B671EAE-9E8E-4A72-A8E8-5A83927FD434}.Debug|x64.ActiveCfg = Debug|x64
 		{1B671EAE-9E8E-4A72-A8E8-5A83927FD434}.Debug|x64.Build.0 = Debug|x64
 		{1B671EAE-9E8E-4A72-A8E8-5A83927FD434}.Debug|x86.ActiveCfg = Debug|Win32
 		{1B671EAE-9E8E-4A72-A8E8-5A83927FD434}.Debug|x86.Build.0 = Debug|Win32
+		{1B671EAE-9E8E-4A72-A8E8-5A83927FD434}.Release|ARM.ActiveCfg = Release|Win32
+		{1B671EAE-9E8E-4A72-A8E8-5A83927FD434}.Release|ARM64.ActiveCfg = Release|Win32
 		{1B671EAE-9E8E-4A72-A8E8-5A83927FD434}.Release|x64.ActiveCfg = Release|x64
 		{1B671EAE-9E8E-4A72-A8E8-5A83927FD434}.Release|x64.Build.0 = Release|x64
 		{1B671EAE-9E8E-4A72-A8E8-5A83927FD434}.Release|x86.ActiveCfg = Release|Win32
 		{1B671EAE-9E8E-4A72-A8E8-5A83927FD434}.Release|x86.Build.0 = Release|Win32
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Debug|ARM.ActiveCfg = Debug|ARM
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Debug|ARM.Build.0 = Debug|ARM
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Debug|ARM.Deploy.0 = Debug|ARM
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Debug|ARM64.Build.0 = Debug|ARM64
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Debug|x64.ActiveCfg = Debug|ARM
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Debug|x86.ActiveCfg = Debug|ARM
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Release|ARM.ActiveCfg = Release|ARM
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Release|ARM.Build.0 = Release|ARM
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Release|ARM.Deploy.0 = Release|ARM
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Release|ARM64.ActiveCfg = Release|ARM64
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Release|ARM64.Build.0 = Release|ARM64
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Release|ARM64.Deploy.0 = Release|ARM64
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Release|x64.ActiveCfg = Release|ARM
+		{21699B57-7B19-4939-9A73-07ED861F1D39}.Release|x86.ActiveCfg = Release|ARM
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

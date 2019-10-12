@@ -1,6 +1,5 @@
 #include "DifferentialDrive.h"
 
-
 DifferentialDrive::DifferentialDrive(Motor* motorLeft, Motor* motorRight) {
 	this->motorLeft = motorLeft;
 	this->motorRight = motorRight;
