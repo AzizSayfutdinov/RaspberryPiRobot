@@ -13,9 +13,14 @@ double RPiMotor::getPower() {
 }
 
 void RPiMotor::setPower(double power) {
+
+	if (power < -100 && power > 100) {
+		// throw exception
+	}
+
 	this->power = power;
 
-	if ((int)power == 0){	// motor does not turn off, of softPWMWrite(power = 0)
+	if ((int)power == 0){	
 
 		softPwmWrite(motorPinPos, 0);
 		softPwmWrite(motorPinNeg, 0);
@@ -34,14 +39,10 @@ void RPiMotor::setPower(double power) {
 
 }
 
-void RPiMotor::turnOffAll()
+void RPiMotor::resetAll()
 {
-	digitalWrite(MOTOR_RIGHT_POS, LOW);
-	delay(1);
-	digitalWrite(MOTOR_RIGHT_NEG, LOW);
-	delay(1);
-	digitalWrite(MOTOR_LEFT_POS, LOW);
-	delay(1);
-	digitalWrite(MOTOR_LEFT_NEG, LOW);
-	delay(1);
+	softPwmWrite(MOTOR_RIGHT_POS, LOW);
+	softPwmWrite(MOTOR_RIGHT_NEG, LOW);
+	softPwmWrite(MOTOR_LEFT_POS, LOW);
+	softPwmWrite(MOTOR_LEFT_NEG, LOW);
 }

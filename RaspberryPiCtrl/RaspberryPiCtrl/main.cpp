@@ -57,6 +57,7 @@ void testTicks(RPiMotor* motor, RPiEncoder* encoder) {
 		currentTickCount = encoder->getTicks();
 		cout << "Ticks: " << currentTickCount << endl;
 		this_thread::sleep_for(chrono::milliseconds(10));
+		
 	}
 	motor->setPower(0);
 }
@@ -116,6 +117,22 @@ void testDriveForwardBackwards(DifferentialDrive* drive, Odometry* odometry) {
 	// RPiMotor::turnOffAll();
 }
 
+void testTurningLeftRight(DifferentialDrive* drive, Odometry* odometry) {
+	odometry->reset();
+	drive->turnLeft();
+	delay(200);
+	drive->stop();
+
+	delay(1000);
+
+	drive->turnRight();
+	delay(200);
+	drive->stop();
+
+	// RPiMotor::resetAll();
+
+}
+
 
 // ==== MAIN =====
 int main(void)
@@ -130,10 +147,9 @@ int main(void)
 	DifferentialDrive* drive = new DifferentialDrive(motorLeft, motorRight);
 	Odometry* odometry = new Odometry(encoderLeft, encoderRight);
 
-	testDriveForwardBackwards(drive, odometry);
+	testTurningLeftRight(drive, odometry);
 
-
-
+	// testDriveForwardBackwards(drive, odometry);
 
 	// testTicks(motorRight, encoderRight);
 

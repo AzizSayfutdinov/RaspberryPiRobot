@@ -18,7 +18,7 @@ public:
 	RPiMotor(int motorPinPos, int motorPinNeg);
 	double getPower();
 	void setPower(double power);
-	static void turnOffAll();
+	static void resetAll();
 
 };
 
