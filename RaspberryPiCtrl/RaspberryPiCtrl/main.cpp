@@ -16,6 +16,8 @@
 #define KEY_RIGHT 77
 #define KEY_EXIT 78
 
+#define COMPASS_ID 0x60
+
 using namespace std;
 
 // ==== Functions ====
