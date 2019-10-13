@@ -10,6 +10,7 @@ private:
 public: 
 	DifferentialDrive(Motor* motorLeft, Motor* motorRight);
 	void moveForward();
+	void moveBackward();
 	void stop();
 	void turnLeft();
 	void turnRight();

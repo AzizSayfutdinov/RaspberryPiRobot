@@ -12,7 +12,7 @@ using namespace std;
 class SimEncoder:public Encoder
 {
 private:
-	const double maxRps = 1;		// maximal rotations per second
+	const double maxRps = 1;		// maximal rotations per second	// realMaxRps = 2.5 ~ 2.8 rps
 	SimMotor* motor;
 	const long resolution = 20;		// encoder resolution
 	const long simEncoderCycleTime = 100; // in ms

@@ -26,12 +26,12 @@ int main()
 	SimEncoder* simEncoderRight = new SimEncoder(motorRight);
 
 	// Test Encoder & Moter simulation
-	// simEncoderLeft->testSimEncoder();
+	simEncoderLeft->testSimEncoder();
 
 	// Test drive 
-	DifferentialDrive* diffDrive = new DifferentialDrive(motorLeft, motorRight);
-	Odometry* odometry = new Odometry(simEncoderLeft, simEncoderRight);
-	test_drive(diffDrive, odometry);
+	// DifferentialDrive* diffDrive = new DifferentialDrive(motorLeft, motorRight);
+	// Odometry* odometry = new Odometry(simEncoderLeft, simEncoderRight);
+	// test_drive(diffDrive, odometry);
 
 	return 0;
 }

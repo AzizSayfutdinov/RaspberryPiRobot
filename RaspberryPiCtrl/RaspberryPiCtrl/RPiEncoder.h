@@ -4,12 +4,13 @@
 #include <thread>
 #include <pthread.h>
 
+// perspective at robot from above
 #define ENCODER_RIGHT 22
 #define ENCODER_LEFT 23
 
 using namespace std;
 
-class RPiEncoder
+class RPiEncoder: public Encoder
 {
 private: 
 	int EncoderPin;

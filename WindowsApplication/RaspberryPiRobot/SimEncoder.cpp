@@ -33,17 +33,17 @@ void SimEncoder::testSimEncoder() {
 	int timePassed = 0;
 
 
-	for (int i = 0; i <= 30; i++) {
+	for (int i = 0; i < 30; i++) {
+		timePassed += timeSteps;
 
 		cout << timePassed << "ms: " << this->getTicks() << " Ticks" << endl;
-		if (i == 10) {
+		if (i == 9) {
 			motor->setPower(50);
 		}
-		if (i == 20) {
+		if (i == 19) {
 			motor->setPower(100);
 		}
-		this_thread::sleep_for(chrono::milliseconds(timeSteps));
-		timePassed += timeSteps;
+		this_thread::sleep_for(chrono::milliseconds(timeSteps));		
 
 	}
 

@@ -7,6 +7,7 @@
 using namespace std;
 
 RPiEncoder::RPiEncoder(int EncoderPin) {
+	stopThread = false;
 	this->EncoderPin = EncoderPin;
 	ticks = 0;
 	workerThread = thread(&RPiEncoder::run, this);	
@@ -25,12 +26,12 @@ void RPiEncoder::run() {
 	cout << "in the run methode()" << endl;
 
 	while (!stopThread) {
-		cout << "9" << endl;
+		oldValue = digitalRead(EncoderPin);
 		this_thread::sleep_for(chrono::milliseconds(1));
 		newValue = digitalRead(EncoderPin);
 
-		if (oldValue < newValue) {		// rising edge 
-			ticks = ticks + 1;	
+		if (oldValue == 0 && newValue == 1) {		// rising edge 
+			ticks++;	
 		}
 		oldValue = newValue;
 
