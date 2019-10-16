@@ -24,6 +24,9 @@ void RPiMotor::setPower(double power) {
 
 		softPwmWrite(motorPinPos, 0);
 		softPwmWrite(motorPinNeg, 0);
+		digitalWrite(motorPinPos, LOW);
+		digitalWrite(motorPinNeg, LOW);
+
 	}
 	if (power > 0) {	// motor in forward mode
 		softPwmWrite(motorPinNeg, 0);

@@ -1,6 +1,7 @@
 #pragma once
 #include "Encoder.h"
 
+
 class Odometry
 {
 private:
@@ -18,6 +19,7 @@ public:
 	double getHeading();		// orientation? 
 	void reset();
 	double ticksToAngle(long ticks);
+	
 	
 };
 

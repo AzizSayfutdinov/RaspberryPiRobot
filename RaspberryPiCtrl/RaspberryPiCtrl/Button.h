@@ -1,9 +1,19 @@
 #pragma once
 #include <wiringPiI2C.h>
 
-#define BUTTON1 23
+#define BUTTON_PIN 23
 #define RASPI_ID 0x28
 #define BUTTON_REG 3
+
+#define NO_BUTTON 0
+#define BUTTON1 16
+#define BUTTON2 32
+#define BUTTON3 64
+#define BUTTON4 128
+#define BUTTON5 1
+#define BUTTON6 2
+#define BUTTON7 4
+#define BUTTON8 8
 
 class Button
 {

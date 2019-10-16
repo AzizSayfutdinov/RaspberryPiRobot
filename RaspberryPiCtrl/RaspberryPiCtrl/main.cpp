@@ -122,13 +122,13 @@ void testDriveForwardBackwards(DifferentialDrive* drive, Odometry* odometry) {
 void testTurningLeftRight(DifferentialDrive* drive, Odometry* odometry) {
 	odometry->reset();
 	drive->turnLeft();
-	delay(200);
+	delay(400);
 	drive->stop();
 
-	delay(1000);
+	delay(500);
 
 	drive->turnRight();
-	delay(200);
+	delay(400);
 	drive->stop();
 
 	// RPiMotor::resetAll();
@@ -150,8 +150,8 @@ int main(void)
 	Odometry* odometry = new Odometry(encoderLeft, encoderRight);
 
 	testTurningLeftRight(drive, odometry);
-
-	// testDriveForwardBackwards(drive, odometry);
+	this_thread::sleep_for(chrono::milliseconds(100));
+	testDriveForwardBackwards(drive, odometry);
 
 	// testTicks(motorRight, encoderRight);
 

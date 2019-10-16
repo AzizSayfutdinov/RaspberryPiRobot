@@ -9,6 +9,10 @@ double Odometry::getDistance() {
 	// ticks * mmPerTick
 	// distance traveled bx center point
 	
+	// use small time differences to calculate distance in a curve
+	// current - previousTicks = tickDifference
+	// resoluation too bad
+	
 	return encoderLeft->getTicks() * mmPerTick;
 }
 
