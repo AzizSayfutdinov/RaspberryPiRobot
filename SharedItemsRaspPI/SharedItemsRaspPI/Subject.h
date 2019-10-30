@@ -1,7 +1,7 @@
 #pragma once
-#include "Observer.h"
 #include <iostream>
 #include <list>
+#include "Observer.h"
 
 using namespace std;
 

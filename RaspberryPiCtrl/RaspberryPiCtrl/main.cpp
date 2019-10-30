@@ -5,10 +5,21 @@
 #include <iostream>
 #include <stdio.h>
 
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h> // for linux
+#include <netdb.h>
+#include <arpa/inet.h>
+#include <string.h>
+#include <string>
+
+
 #include "RPiEncoder.h"
 #include "RPiMotor.h"
 #include "DifferentialDrive.h"
 #include "Odometry.h"
+
+#define LED 17
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -149,9 +160,113 @@ int main(void)
 	DifferentialDrive* drive = new DifferentialDrive(motorLeft, motorRight);
 	Odometry* odometry = new Odometry(encoderLeft, encoderRight);
 
-	testTurningLeftRight(drive, odometry);
-	this_thread::sleep_for(chrono::milliseconds(100));
-	testDriveForwardBackwards(drive, odometry);
+	digitalWrite(LED, HIGH);
+
+	// == Setup TCP Server == 
+	// Create a socket
+	int listening = socket(AF_INET, SOCK_STREAM, 0);		// INET = IPv4; listening is a socket descriptor
+	if (listening == -1) {
+		cerr << "Can't create a socket!";
+		return -1;
+	}
+
+	// Bind the socket to a IP address and port
+	sockaddr_in hint;
+	hint.sin_family = AF_INET;
+	hint.sin_addr.s_addr = INADDR_ANY;		// automatically be filled with current host's IP address
+	hint.sin_port = htons(54000);
+	inet_pton(AF_INET, "0.0.0.0", &hint.sin_addr);		// defining the struture of the socket; "0.0.0.0" means eny address, dara conversion
+
+	if (bind(listening, (sockaddr*)&hint, sizeof(hint)) == -1) {
+		cerr << "Can't bind to IP/port";
+		return -2;
+	}
+
+
+	// Mark the socket for listening in
+	if (listen(listening, SOMAXCONN) == -1) {
+		cerr << "Can't listen!";
+		return -3;
+	}
+
+
+
+	// Accept a call
+	sockaddr_in client;
+	socklen_t clientSize = sizeof(client);
+	char host[NI_MAXHOST];		// buffers
+	char svc[NI_MAXSERV];
+
+	int clientSocket = accept(listening, (sockaddr*)&client, &clientSize);
+
+	if (clientSocket == -1) {
+		cerr << "Problem with client connetion!";
+		return -4;
+	}
+
+	// Close socket
+	close(listening);
+
+	// Greet Client!
+	cout << "Initiate Greeting of client! Code Red!";
+	char greeting[] = "Hi Client! What's up!";
+	send(clientSocket, greeting, sizeof(greeting) + 1, 0);
+
+	// cleaning up garbage
+	memset(host, 0, NI_MAXHOST);
+	memset(svc, 0, NI_MAXSERV);
+
+	int result = getnameinfo((sockaddr*)&client, sizeof(client), host, NI_MAXHOST, svc, NI_MAXSERV, 0);
+
+	if (result) {
+		cout << host << " connected on " << svc << endl;
+	}
+	else {
+		inet_ntop(AF_INET, &client.sin_addr, host, NI_MAXHOST);		// opposite of inet_pton, numeric array to string conversion
+		cout << host << " connected on " << ntohs(client.sin_port) << endl;
+	}
+
+
+
+	char buffer[4096];
+	while (true) {
+		// clear buffer
+		memset(buffer, 0, 4096);
+
+		// wait for a massage
+		int bytesRevc = recv(clientSocket, buffer, 4096, 0);
+		if (bytesRevc == -1) {
+			cerr << "There was a connection issue" << endl;
+			break;
+		}
+
+		if (bytesRevc == 0) {
+			cout << "The client disconnected" << endl;
+			break;
+		}
+
+		// Display message
+		cout << "Received: " << string(buffer, 0, bytesRevc) << endl;
+
+		// echo back out: Resend message
+		send(clientSocket, buffer, bytesRevc + 1, 0);
+
+		if (buffer[0] == 'a') {
+			digitalWrite(LED, HIGH);
+		}
+		if (buffer[0] == 'b') {
+			digitalWrite(LED, LOW);
+		}
+
+	}
+
+	// Close the socket
+	close(clientSocket);
+
+
+	// testTurningLeftRight(drive, odometry);
+	// this_thread::sleep_for(chrono::milliseconds(100));
+	// testDriveForwardBackwards(drive, odometry);
 
 	// testTicks(motorRight, encoderRight);
 
