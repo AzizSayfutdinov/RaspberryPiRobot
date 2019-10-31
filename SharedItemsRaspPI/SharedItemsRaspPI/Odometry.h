@@ -20,6 +20,5 @@ public:
 	void reset();
 	double ticksToAngle(long ticks);
 	
-	
 };
 

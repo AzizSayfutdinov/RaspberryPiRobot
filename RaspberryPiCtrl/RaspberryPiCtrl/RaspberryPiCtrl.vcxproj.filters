@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="RPiMotor.cpp">
+      <Filter>Motor</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Button</Filter>
+    </ClCompile>
+    <ClCompile Include="RPiCompassI2C.cpp">
+      <Filter>Compass</Filter>
+    </ClCompile>
+    <ClCompile Include="RPiCompassEncoder.cpp">
+      <Filter>Compass</Filter>
+    </ClCompile>
+    <ClCompile Include="Compass.cpp">
+      <Filter>Compass</Filter>
+    </ClCompile>
+    <ClCompile Include="RPiEncoder.cpp">
+      <Filter>Encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="Server.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RPiMotor.h">
+      <Filter>Motor</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Button</Filter>
+    </ClInclude>
+    <ClInclude Include="RPiCompassI2C.h">
+      <Filter>Compass</Filter>
+    </ClInclude>
+    <ClInclude Include="RPiCompassEncoder.h">
+      <Filter>Compass</Filter>
+    </ClInclude>
+    <ClInclude Include="Compass.h">
+      <Filter>Compass</Filter>
+    </ClInclude>
+    <ClInclude Include="RPiEncoder.h">
+      <Filter>Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="Server.h">
+      <Filter>Server</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Motor">
+      <UniqueIdentifier>{6638b05e-79ec-4811-baad-59c8213e9c74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Button">
+      <UniqueIdentifier>{1dfd17d3-c97d-4f23-8d41-9174cef0f805}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Compass">
+      <UniqueIdentifier>{c1ce837b-0f32-4a3a-a18c-81f2f59d5cdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Encoder">
+      <UniqueIdentifier>{cee9b093-2428-485c-a527-d4b63b41e334}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server">
+      <UniqueIdentifier>{f7edd787-84cf-469e-8b55-f448e38611fd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

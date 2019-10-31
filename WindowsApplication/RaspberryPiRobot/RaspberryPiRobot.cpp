@@ -16,7 +16,7 @@ using namespace std;
 void test_drive(DifferentialDrive* drive, Odometry* odometry);
 
 
-int main()
+int main()		// TODO: rename file
 {
 	std::cout << "------ Testing SimEncoder -----\n";
 

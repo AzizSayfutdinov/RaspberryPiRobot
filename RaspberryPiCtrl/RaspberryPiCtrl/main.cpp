@@ -13,11 +13,13 @@
 #include <string.h>
 #include <string>
 
+#include <chrono>
 
 #include "RPiEncoder.h"
 #include "RPiMotor.h"
 #include "DifferentialDrive.h"
 #include "Odometry.h"
+#include "Server.h"
 
 #define LED 17
 
@@ -30,6 +32,7 @@
 #define COMPASS_ID 0x60
 
 using namespace std;
+using namespace std::chrono;
 
 // ==== Functions ====
 void setup() {
@@ -37,7 +40,7 @@ void setup() {
 
 	pinMode(ENCODER_LEFT, INPUT);
 	pinMode(ENCODER_RIGHT, INPUT);
-	
+
 	pinMode(MOTOR_RIGHT_POS, OUTPUT);
 	pinMode(MOTOR_RIGHT_NEG, OUTPUT);
 	pinMode(MOTOR_LEFT_POS, OUTPUT);
@@ -55,7 +58,7 @@ void setup() {
 void testTicks(RPiMotor* motor, RPiEncoder* encoder) {
 
 	int currentTickCount = 0;
-	
+
 	for (int i = 0; i < 100; i++) {
 
 		motor->setPower(100);
@@ -70,7 +73,7 @@ void testTicks(RPiMotor* motor, RPiEncoder* encoder) {
 		currentTickCount = encoder->getTicks();
 		cout << "Ticks: " << currentTickCount << endl;
 		this_thread::sleep_for(chrono::milliseconds(10));
-		
+
 	}
 	motor->setPower(0);
 }
@@ -97,7 +100,7 @@ void testKeyboardInput() {		// does not work like this: cross compilation needed
 		case KEY_RIGHT:
 			cout << endl << "Right: " << c << endl;  // key right
 			break;
-		case KEY_EXIT: 
+		case KEY_EXIT:
 			running = false;
 			cout << endl << "Ending program:  " << c << endl; // exit key - ESC
 		default:
@@ -110,14 +113,14 @@ void testKeyboardInput() {		// does not work like this: cross compilation needed
 }
 
 void testDriveForwardBackwards(DifferentialDrive* drive, Odometry* odometry) {
-	
+
 	int dist = 0;
 	odometry->reset();
 	drive->moveForward();
 	this_thread::sleep_for(chrono::milliseconds(1000));
 	drive->stop();
 	dist = odometry->getDistance();
-	cout << "Distance traveled: " << dist << "mm " << endl;	
+	cout << "Distance traveled: " << dist << "mm " << endl;
 
 	delay(1000);
 
@@ -146,24 +149,10 @@ void testTurningLeftRight(DifferentialDrive* drive, Odometry* odometry) {
 
 }
 
-
-// ==== MAIN =====
-int main(void)
-{
-	setup();
-
-	RPiMotor* motorRight = new RPiMotor(MOTOR_RIGHT_POS, MOTOR_RIGHT_NEG);
-	RPiMotor* motorLeft = new RPiMotor(MOTOR_LEFT_POS, MOTOR_LEFT_NEG);
-	RPiEncoder* encoderLeft = new RPiEncoder(ENCODER_LEFT);
-	RPiEncoder* encoderRight = new RPiEncoder(ENCODER_RIGHT);
-
-	DifferentialDrive* drive = new DifferentialDrive(motorLeft, motorRight);
-	Odometry* odometry = new Odometry(encoderLeft, encoderRight);
-
-	digitalWrite(LED, HIGH);
+int testTCP() {
 
 	// == Setup TCP Server == 
-	// Create a socket
+	// create a socket
 	int listening = socket(AF_INET, SOCK_STREAM, 0);		// INET = IPv4; listening is a socket descriptor
 	if (listening == -1) {
 		cerr << "Can't create a socket!";
@@ -183,12 +172,11 @@ int main(void)
 	}
 
 
-	// Mark the socket for listening in
+	// Mark the socket for listening
 	if (listen(listening, SOMAXCONN) == -1) {
 		cerr << "Can't listen!";
 		return -3;
 	}
-
 
 
 	// Accept a call
@@ -207,6 +195,7 @@ int main(void)
 	// Close socket
 	close(listening);
 
+
 	// Greet Client!
 	cout << "Initiate Greeting of client! Code Red!";
 	char greeting[] = "Hi Client! What's up!";
@@ -222,10 +211,9 @@ int main(void)
 		cout << host << " connected on " << svc << endl;
 	}
 	else {
-		inet_ntop(AF_INET, &client.sin_addr, host, NI_MAXHOST);		// opposite of inet_pton, numeric array to string conversion
+		inet_ntop(AF_INET, &client.sin_addr, host, NI_MAXHOST);				// opposite of inet_pton, numeric array to string conversion
 		cout << host << " connected on " << ntohs(client.sin_port) << endl;
 	}
-
 
 
 	char buffer[4096];
@@ -262,6 +250,57 @@ int main(void)
 
 	// Close the socket
 	close(clientSocket);
+}
+
+
+// ==== MAIN =====
+int main(void)
+{
+	setup();
+
+	RPiMotor* motorRight = new RPiMotor(MOTOR_RIGHT_POS, MOTOR_RIGHT_NEG);
+	RPiMotor* motorLeft = new RPiMotor(MOTOR_LEFT_POS, MOTOR_LEFT_NEG);
+	RPiEncoder* encoderLeft = new RPiEncoder(ENCODER_LEFT);
+	RPiEncoder* encoderRight = new RPiEncoder(ENCODER_RIGHT);
+
+	DifferentialDrive* drive = new DifferentialDrive(motorLeft, motorRight);
+	Odometry* odometry = new Odometry(encoderLeft, encoderRight);
+
+	testTCP();
+
+	Server* server = new Server();
+
+	while (true) {
+
+		server->receiveData();
+		char* buffer = server->getBuffer();
+		char c = buffer[0];
+
+		long timeout = 10;		// in ms
+
+		int lastTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+
+		int diff = 0;
+
+		while (diff < timeout) {
+
+			if (c == 'f') {
+				drive->moveForward();
+			}
+
+			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+			diff = currentTime - lastTime;
+		}
+
+	}
+
+
+
+
+
+
+
+
 
 
 	// testTurningLeftRight(drive, odometry);
