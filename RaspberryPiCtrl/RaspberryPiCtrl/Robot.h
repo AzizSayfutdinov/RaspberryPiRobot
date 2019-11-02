@@ -1,0 +1,28 @@
+#pragma once
+#include "DifferentialDrive.h"
+#include "RPiMotor.h"
+#include "RPiEncoder.h"
+#include "Odometry.h"
+#include "Server.h"
+
+class Robot
+{
+private: 
+	RPiMotor* motorRight;  
+	RPiMotor* motorLeft; 
+	DifferentialDrive* drive;
+
+	RPiEncoder* encoderRight;
+	RPiEncoder* encoderLeft; 
+	Odometry* odometry;  
+
+	Server* server;
+
+public: 
+	Robot();
+	Server* getServer();
+	DifferentialDrive* getDrive();
+
+
+};
+

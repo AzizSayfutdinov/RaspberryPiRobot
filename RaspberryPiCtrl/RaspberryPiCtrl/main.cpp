@@ -20,6 +20,7 @@
 #include "DifferentialDrive.h"
 #include "Odometry.h"
 #include "Server.h"
+#include "Robot.h"
 
 #define LED 17
 
@@ -46,7 +47,7 @@ void setup() {
 	pinMode(MOTOR_LEFT_POS, OUTPUT);
 	pinMode(MOTOR_LEFT_NEG, OUTPUT);
 
-	// TODO: add expections if softPWM creation fails
+	// TODO: add exceptions if softPWM creation fails
 	int PwmSuccessful_M1pos = softPwmCreate(MOTOR_RIGHT_POS, 0, 100);
 	int PwmSuccessful_M1neg = softPwmCreate(MOTOR_RIGHT_NEG, 0, 100);
 	int PwmSuccessful_M2pos = softPwmCreate(MOTOR_LEFT_POS, 0, 100);
@@ -258,25 +259,36 @@ int main(void)
 {
 	setup();
 
-	RPiMotor* motorRight = new RPiMotor(MOTOR_RIGHT_POS, MOTOR_RIGHT_NEG);
-	RPiMotor* motorLeft = new RPiMotor(MOTOR_LEFT_POS, MOTOR_LEFT_NEG);
-	RPiEncoder* encoderLeft = new RPiEncoder(ENCODER_LEFT);
-	RPiEncoder* encoderRight = new RPiEncoder(ENCODER_RIGHT);
+	// RPiMotor* motorRight = new RPiMotor(MOTOR_RIGHT_POS, MOTOR_RIGHT_NEG);
+	// RPiMotor* motorLeft = new RPiMotor(MOTOR_LEFT_POS, MOTOR_LEFT_NEG);
+	// RPiEncoder* encoderLeft = new RPiEncoder(ENCODER_LEFT);
+	// RPiEncoder* encoderRight = new RPiEncoder(ENCODER_RIGHT);
+	// 
+	// DifferentialDrive* drive = new DifferentialDrive(motorLeft, motorRight);
+	// Odometry* odometry = new Odometry(encoderLeft, encoderRight);
 
-	DifferentialDrive* drive = new DifferentialDrive(motorLeft, motorRight);
-	Odometry* odometry = new Odometry(encoderLeft, encoderRight);
+	// while (true) {
+	// 	this_thread::sleep_for(chrono::milliseconds(250));
+	// 	digitalWrite(LED, HIGH);
+	// 	this_thread::sleep_for(chrono::milliseconds(250));
+	// 	digitalWrite(LED, LOW);
+	// }
 
-	testTCP();
+	// testTCP();
 
-	Server* server = new Server();
+	// Server* server = new Server();
+
+	Robot* robot = new Robot();
+	
+	// exit with exit code from GUI: while robot->getServer()->reveiveData() != "Exit"
 
 	while (true) {
 
-		server->receiveData();
-		char* buffer = server->getBuffer();
+		robot->getServer()->receiveData();
+		char* buffer = robot->getServer()->getBuffer();
 		char c = buffer[0];
 
-		long timeout = 10;		// in ms
+		long timeout = 300;		// in ms
 
 		int lastTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 
@@ -284,13 +296,32 @@ int main(void)
 
 		while (diff < timeout) {
 
-			if (c == 'f') {
-				drive->moveForward();
+			switch (c)
+			{
+			case 'f': 
+				robot->getDrive()->moveForward();
+				break;
+			case 'b':
+				robot->getDrive()->moveBackward();
+				break;
+			case 's':
+				robot->getDrive()->stop();
+				break;
+			case 'r':
+				robot->getDrive()->turnRight();
+				break;
+			case 'l':
+				robot->getDrive()->turnLeft();
+				break;
+			default:
+				break;
 			}
+
 
 			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 			diff = currentTime - lastTime;
 		}
+		robot->getDrive()->stop();
 
 	}
 

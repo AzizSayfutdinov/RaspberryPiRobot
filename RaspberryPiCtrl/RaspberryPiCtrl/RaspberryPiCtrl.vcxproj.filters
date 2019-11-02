@@ -23,6 +23,7 @@
     <ClCompile Include="Server.cpp">
       <Filter>Server</Filter>
     </ClCompile>
+    <ClCompile Include="Robot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RPiMotor.h">
@@ -46,6 +47,7 @@
     <ClInclude Include="Server.h">
       <Filter>Server</Filter>
     </ClInclude>
+    <ClInclude Include="Robot.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Motor">
@@ -62,6 +64,9 @@
     </Filter>
     <Filter Include="Server">
       <UniqueIdentifier>{f7edd787-84cf-469e-8b55-f448e38611fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot">
+      <UniqueIdentifier>{ae82d37f-d95b-4ddd-a8e2-4e9cafcc1fe2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
