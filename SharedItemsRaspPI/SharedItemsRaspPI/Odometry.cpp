@@ -1,8 +1,12 @@
 #include "Odometry.h"
+#include "Encoder.h"
 
-Odometry::Odometry(Encoder* encoderLeft, Encoder* encoderRight) {
+
+Odometry::Odometry(Encoder* encoderLeft, Encoder* encoderRight, Compass* compass)
+{
 	this->encoderLeft = encoderLeft;
 	this->encoderRight = encoderRight;
+	this->compass = compass;
 }
 
 double Odometry::getDistance() {
@@ -18,9 +22,7 @@ double Odometry::getDistance() {
 
 double Odometry::getHeading() {
 	// degrees from north in positive rotational direction
-
-
-	return 1;
+	return compass->getDirection();
 }
 
 void Odometry::reset() {
@@ -39,3 +41,9 @@ double Odometry::ticksToAngle(long ticks) {
 	return 1;
 }
 
+
+void Odometry::alignNorth(DifferentialDrive* drive) {
+	while (compass->getDirection() < 359.0 && compass->getDirection() > 1.0) {
+		drive->turnLeft(50);
+	}
+}

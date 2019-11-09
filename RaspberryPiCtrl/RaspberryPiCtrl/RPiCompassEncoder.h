@@ -1,8 +1,8 @@
 #pragma once
 #include "Odometry.h"
-#include "Compass.h"
 
-class RPiCompassEncoder: public Compass
+
+class RPiCompassEncoder
 {
 private: 
 	Odometry* odometry;

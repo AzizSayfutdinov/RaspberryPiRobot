@@ -13,7 +13,6 @@ void DifferentialDrive::moveForward() {
 	// follow a ramp with for loop up to 100%
 	motorLeft->setPower(power);
 	motorRight->setPower(power);
-
 }
 
 void DifferentialDrive::moveBackward()
@@ -44,6 +43,11 @@ void DifferentialDrive::turnLeft() {
 	int degrees = 0;
 
 	int power = 50;
+	motorLeft->setPower(power);
+	motorRight->setPower(-power);
+}
+
+void DifferentialDrive::turnLeft(int power) {
 	motorLeft->setPower(power);
 	motorRight->setPower(-power);
 }

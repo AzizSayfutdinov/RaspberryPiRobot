@@ -71,7 +71,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
-    <ClCompile Include="Compass.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Robot.cpp" />
     <ClCompile Include="RPiCompassEncoder.cpp" />
@@ -82,7 +81,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
-    <ClInclude Include="Compass.h" />
     <ClInclude Include="Robot.h" />
     <ClInclude Include="RPiCompassEncoder.h" />
     <ClInclude Include="RPiCompassI2C.h" />

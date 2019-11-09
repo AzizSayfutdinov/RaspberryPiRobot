@@ -1,5 +1,6 @@
 #include "Robot.h"
 
+
 Robot::Robot()
 {
 	Robot::motorRight = new RPiMotor(MOTOR_RIGHT_POS, MOTOR_RIGHT_NEG);
@@ -8,8 +9,9 @@ Robot::Robot()
 
 	Robot::encoderRight = new RPiEncoder(ENCODER_RIGHT);
 	Robot::encoderLeft = new RPiEncoder(ENCODER_LEFT);
-	Robot::odometry = new Odometry(encoderLeft, encoderRight);		// use singleton class
-
+	Robot::compass = new RPiCompassI2C(I2C_ADDRESS);
+	Robot::odometry = new Odometry(encoderLeft, encoderRight, compass);		// use singleton class
+	
 	Robot::server = new Server();
 }
 
@@ -22,3 +24,9 @@ DifferentialDrive* Robot::getDrive()
 {
 	return Robot::drive;
 }
+
+Odometry* Robot::getOdometry()
+{
+	return Robot::odometry;
+}
+

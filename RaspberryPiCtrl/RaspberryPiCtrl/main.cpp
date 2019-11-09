@@ -21,6 +21,7 @@
 #include "Odometry.h"
 #include "Server.h"
 #include "Robot.h"
+#include "RPiCompassI2C.h"
 
 #define LED 17
 
@@ -251,6 +252,7 @@ int testTCP() {
 
 	// Close the socket
 	close(clientSocket);
+	return 1;
 }
 
 
@@ -277,25 +279,37 @@ int main(void)
 	// testTCP();
 
 	// Server* server = new Server();
-
-	Robot* robot = new Robot();
 	
 	// exit with exit code from GUI: while robot->getServer()->reveiveData() != "Exit"
 
-	while (true) {
+	RPiCompassI2C* compass = new RPiCompassI2C(COMPASS_ID);
 
+	while (true) {
+	
+		cout << "Value 8 bit: " << compass->getDirection8bit() << "\t Value 16 bit: " << compass->getDirection() << endl;
+		this_thread::sleep_for(chrono::milliseconds(250));
+	}
+
+
+	// MAIN LOOP
+	Robot* robot = new Robot();
+	while (true) {
 		robot->getServer()->receiveData();
 		char* buffer = robot->getServer()->getBuffer();
 		char c = buffer[0];
-
-		long timeout = 300;		// in ms
-
+	
+		long timeout = 200;		// in ms
+	
 		int lastTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-
+	
 		int diff = 0;
 
+		if (c == 'a') {
+			robot->getOdometry()->alignNorth(robot->getDrive());
+		}
+	
 		while (diff < timeout) {
-
+	
 			switch (c)
 			{
 			case 'f': 
@@ -316,13 +330,13 @@ int main(void)
 			default:
 				break;
 			}
-
-
+	
+	
 			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 			diff = currentTime - lastTime;
 		}
 		robot->getDrive()->stop();
-
+	
 	}
 
 

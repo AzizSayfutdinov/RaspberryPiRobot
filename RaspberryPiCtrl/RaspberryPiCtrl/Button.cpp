@@ -55,5 +55,6 @@ int Button::buttonXpressed()
 		// include proper exception/notice
 		break;
 	}
+	return 1;
 }
 

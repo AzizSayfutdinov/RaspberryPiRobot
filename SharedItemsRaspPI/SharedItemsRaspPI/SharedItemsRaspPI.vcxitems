@@ -15,12 +15,14 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Compass.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DifferentialDrive.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Encoder.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Motor.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Odometry.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Compass.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DifferentialDrive.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Encoder.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Motor.h" />

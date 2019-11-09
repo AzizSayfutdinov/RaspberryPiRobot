@@ -13,6 +13,7 @@ public:
 	void moveBackward();
 	void stop();
 	void turnLeft();
+	void turnLeft(int power);
 	void turnRight();
 };
 
