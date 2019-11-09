@@ -5,11 +5,13 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Encoder.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Motor.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Odometry.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Compass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)DifferentialDrive.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Encoder.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Motor.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Odometry.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Compass.h" />
   </ItemGroup>
 </Project>

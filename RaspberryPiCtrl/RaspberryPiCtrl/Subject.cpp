@@ -10,7 +10,6 @@ void Subject::detach(Observer* observer)
 	observerList.erase(std::remove(observerList.begin(), observerList.end(), observer), observerList.end());
 }
 
-
 void Subject::notify()
 {
 	for (int i = 0; i < observerList.size(); i++) {
@@ -18,7 +17,3 @@ void Subject::notify()
 	}
 }
 
-std::vector<Observer*>* Subject::getObserverList()
-{
-	return &observerList;
-}

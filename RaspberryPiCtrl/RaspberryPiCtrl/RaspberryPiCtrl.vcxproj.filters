@@ -5,9 +5,6 @@
     <ClCompile Include="RPiMotor.cpp">
       <Filter>Motor</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Button</Filter>
-    </ClCompile>
     <ClCompile Include="RPiCompassI2C.cpp">
       <Filter>Compass</Filter>
     </ClCompile>
@@ -32,25 +29,13 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>InputManager</Filter>
     </ClCompile>
-    <ClCompile Include="IInput.cpp">
-      <Filter>InputManager</Filter>
-    </ClCompile>
     <ClCompile Include="ServerObserver.cpp">
-      <Filter>DesignPattern\Observer</Filter>
-    </ClCompile>
-    <ClCompile Include="ButtonSubject.cpp">
-      <Filter>DesignPattern\Observer</Filter>
-    </ClCompile>
-    <ClCompile Include="ButtonObserver.cpp">
       <Filter>DesignPattern\Observer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RPiMotor.h">
       <Filter>Motor</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Button</Filter>
     </ClInclude>
     <ClInclude Include="RPiCompassI2C.h">
       <Filter>Compass</Filter>
@@ -76,25 +61,13 @@
     <ClInclude Include="InputManager.h">
       <Filter>InputManager</Filter>
     </ClInclude>
-    <ClInclude Include="IInput.h">
-      <Filter>InputManager</Filter>
-    </ClInclude>
     <ClInclude Include="ServerObserver.h">
-      <Filter>DesignPattern\Observer</Filter>
-    </ClInclude>
-    <ClInclude Include="ButtonSubject.h">
-      <Filter>DesignPattern\Observer</Filter>
-    </ClInclude>
-    <ClInclude Include="ButtonObserver.h">
       <Filter>DesignPattern\Observer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Motor">
       <UniqueIdentifier>{6638b05e-79ec-4811-baad-59c8213e9c74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Button">
-      <UniqueIdentifier>{1dfd17d3-c97d-4f23-8d41-9174cef0f805}</UniqueIdentifier>
     </Filter>
     <Filter Include="Compass">
       <UniqueIdentifier>{c1ce837b-0f32-4a3a-a18c-81f2f59d5cdd}</UniqueIdentifier>

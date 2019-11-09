@@ -22,7 +22,6 @@
 #include "Server.h"
 #include "Robot.h"
 #include "RPiCompassI2C.h"
-#include "Button.h"
 #include "InputManager.h"
 
 #define LED 17
@@ -44,11 +43,6 @@ void setup() {
 
 	pinMode(ENCODER_LEFT, INPUT);
 	pinMode(ENCODER_RIGHT, INPUT);
-
-	pinMode(BUTTON1, INPUT);
-	pinMode(BUTTON2, INPUT);
-	pinMode(BUTTON3, INPUT);
-	pinMode(BUTTON4, INPUT);
 
 	pinMode(MOTOR_RIGHT_POS, OUTPUT);
 	pinMode(MOTOR_RIGHT_NEG, OUTPUT);
@@ -289,20 +283,60 @@ int main(void)
 	
 	// exit with exit code from GUI: while robot->getServer()->reveiveData() != "Exit"	
 
-	// TEST OBSERVER BUTTON
+	Robot* robot = new Robot();
 
-	InputManager* inputManager = new InputManager();
-	
-	Button* b1 = new Button(BUTTON_PIN, BUTTON1);
-	ButtonObserver* bo1 = new ButtonObserver();
-	b1->attach(bo1);
-
-	inputManager->addInputSubject(b1, bo1, INDEX_BUTTON1 + 0);
+	ServerObserver* so = new ServerObserver();
+	robot->getServer()->attach(so);
+	InputManager* im = new InputManager(robot->getServer());
 
 	while (true) {
-		cout << "Output: " << inputManager->getInput() << ". Button was pressed" << endl;
-		this_thread::sleep_for(chrono::milliseconds(100));
+
+		char c = im->getInput();
+
+		long timeout = 200;		// in ms
+	
+		int lastTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+	
+		int diff = 0;
+	
+		if (c == 'a') {
+			robot->getOdometry()->alignNorth(robot->getDrive());
+		}
+	
+		while (diff < timeout) {
+	
+			switch (c)
+			{
+			case 'f': 
+				robot->getDrive()->moveForward();
+				break;
+			case 'b':
+				robot->getDrive()->moveBackward();
+				break;
+			case 's':
+				robot->getDrive()->stop();
+				break;
+			case 'r':
+				robot->getDrive()->turnRight();
+				break;
+			case 'l':
+				robot->getDrive()->turnLeft();
+				break;
+			default:
+				break;
+			}
+	
+	
+			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+			diff = currentTime - lastTime;
+		}
+		robot->getDrive()->stop();
+
 	}
+
+
+
+
 
 	// RPiCompassI2C* compass = new RPiCompassI2C(COMPASS_ID);
 	// 

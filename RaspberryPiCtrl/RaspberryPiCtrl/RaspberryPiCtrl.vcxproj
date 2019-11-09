@@ -70,10 +70,6 @@
     </RemotePostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Button.cpp" />
-    <ClCompile Include="ButtonObserver.cpp" />
-    <ClCompile Include="ButtonSubject.cpp" />
-    <ClCompile Include="IInput.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Observer.cpp" />
@@ -87,10 +83,6 @@
     <ClCompile Include="Subject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="ButtonObserver.h" />
-    <ClInclude Include="ButtonSubject.h" />
-    <ClInclude Include="IInput.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Robot.h" />
