@@ -6,10 +6,11 @@
 #include <arpa/inet.h>
 #include <string.h>
 #include <string>
+#include "Subject.h"
 
 using namespace std;
 
-class Server
+class Server: public Subject
 {
 
 private: 
@@ -32,8 +33,6 @@ public:
 	char* getBuffer();
 	void receiveData();
 	Server();
-
-
 
 };
 

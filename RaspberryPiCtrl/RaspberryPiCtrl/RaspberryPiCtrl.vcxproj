@@ -71,22 +71,36 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ButtonObserver.cpp" />
+    <ClCompile Include="ButtonSubject.cpp" />
+    <ClCompile Include="IInput.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Robot.cpp" />
     <ClCompile Include="RPiCompassEncoder.cpp" />
     <ClCompile Include="RPiCompassI2C.cpp" />
     <ClCompile Include="RPiEncoder.cpp" />
     <ClCompile Include="RPiMotor.cpp" />
     <ClCompile Include="Server.cpp" />
+    <ClCompile Include="ServerObserver.cpp" />
+    <ClCompile Include="Subject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="ButtonObserver.h" />
+    <ClInclude Include="ButtonSubject.h" />
+    <ClInclude Include="IInput.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="Robot.h" />
     <ClInclude Include="RPiCompassEncoder.h" />
     <ClInclude Include="RPiCompassI2C.h" />
     <ClInclude Include="RPiEncoder.h" />
     <ClInclude Include="RPiMotor.h" />
     <ClInclude Include="Server.h" />
+    <ClInclude Include="ServerObserver.h" />
+    <ClInclude Include="Subject.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

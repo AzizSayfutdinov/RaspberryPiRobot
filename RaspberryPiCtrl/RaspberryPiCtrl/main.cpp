@@ -22,6 +22,8 @@
 #include "Server.h"
 #include "Robot.h"
 #include "RPiCompassI2C.h"
+#include "Button.h"
+#include "InputManager.h"
 
 #define LED 17
 
@@ -42,6 +44,11 @@ void setup() {
 
 	pinMode(ENCODER_LEFT, INPUT);
 	pinMode(ENCODER_RIGHT, INPUT);
+
+	pinMode(BUTTON1, INPUT);
+	pinMode(BUTTON2, INPUT);
+	pinMode(BUTTON3, INPUT);
+	pinMode(BUTTON4, INPUT);
 
 	pinMode(MOTOR_RIGHT_POS, OUTPUT);
 	pinMode(MOTOR_RIGHT_NEG, OUTPUT);
@@ -280,64 +287,88 @@ int main(void)
 
 	// Server* server = new Server();
 	
-	// exit with exit code from GUI: while robot->getServer()->reveiveData() != "Exit"
+	// exit with exit code from GUI: while robot->getServer()->reveiveData() != "Exit"	
 
-	RPiCompassI2C* compass = new RPiCompassI2C(COMPASS_ID);
+	// TEST OBSERVER BUTTON
+
+	InputManager* inputManager = new InputManager();
+	
+	Button* b1 = new Button(BUTTON_PIN, BUTTON1);
+	ButtonObserver* bo1 = new ButtonObserver();
+	b1->attach(bo1);
+
+	inputManager->addInputSubject(b1, bo1, INDEX_BUTTON1 + 0);
 
 	while (true) {
-	
-		cout << "Value 8 bit: " << compass->getDirection8bit() << "\t Value 16 bit: " << compass->getDirection() << endl;
-		this_thread::sleep_for(chrono::milliseconds(250));
+		cout << "Output: " << inputManager->getInput() << ". Button was pressed" << endl;
+		this_thread::sleep_for(chrono::milliseconds(100));
 	}
 
-
-	// MAIN LOOP
-	Robot* robot = new Robot();
-	while (true) {
-		robot->getServer()->receiveData();
-		char* buffer = robot->getServer()->getBuffer();
-		char c = buffer[0];
-	
-		long timeout = 200;		// in ms
-	
-		int lastTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-	
-		int diff = 0;
-
-		if (c == 'a') {
-			robot->getOdometry()->alignNorth(robot->getDrive());
-		}
-	
-		while (diff < timeout) {
-	
-			switch (c)
-			{
-			case 'f': 
-				robot->getDrive()->moveForward();
-				break;
-			case 'b':
-				robot->getDrive()->moveBackward();
-				break;
-			case 's':
-				robot->getDrive()->stop();
-				break;
-			case 'r':
-				robot->getDrive()->turnRight();
-				break;
-			case 'l':
-				robot->getDrive()->turnLeft();
-				break;
-			default:
-				break;
-			}
-	
-	
-			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-			diff = currentTime - lastTime;
-		}
-		robot->getDrive()->stop();
-	
-	}
+	// RPiCompassI2C* compass = new RPiCompassI2C(COMPASS_ID);
+	// 
+	// while (true) {
+	// 
+	// 	cout << "Value 8 bit: " << compass->getDirection8bit() << "\t Value 16 bit: " << compass->getDirection() << endl;
+	// 	this_thread::sleep_for(chrono::milliseconds(250));
+	// }
+	// 
+	// 
+	// // MAIN LOOP
+	// Robot* robot = new Robot();
+	// while (true) {
+	// 
+	// 	// Receive Handler implementieren, damit sowohl vom Client als auch 
+	// 	// vom Button die Commandos entgegen genommen werden können. 
+	// 	// Aus dem Handler holt man einfach die Daten raus, ohne zu wissen, 
+	// 	// woher diese genau kommen. 
+	// 	// Beim Button: 
+	// 	// char c ist zunächste das Zeichen, das vom Client ankommt. Wenn ein Button
+	// 	// degrückt wird, wird c überschrieben. 
+	// 
+	// 	robot->getServer()->receiveData();
+	// 	char* buffer = robot->getServer()->getBuffer();
+	// 	char c = buffer[0];
+	// 
+	// 	long timeout = 200;		// in ms
+	// 
+	// 	int lastTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+	// 
+	// 	int diff = 0;
+	// 
+	// 	if (c == 'a') {
+	// 		robot->getOdometry()->alignNorth(robot->getDrive());
+	// 	}
+	// 
+	// 	while (diff < timeout) {
+	// 
+	// 		switch (c)
+	// 		{
+	// 		case 'f': 
+	// 			robot->getDrive()->moveForward();
+	// 			break;
+	// 		case 'b':
+	// 			robot->getDrive()->moveBackward();
+	// 			break;
+	// 		case 's':
+	// 			robot->getDrive()->stop();
+	// 			break;
+	// 		case 'r':
+	// 			robot->getDrive()->turnRight();
+	// 			break;
+	// 		case 'l':
+	// 			robot->getDrive()->turnLeft();
+	// 			break;
+	// 		default:
+	// 			break;
+	// 		}
+	// 
+	// 
+	// 		int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+	// 		diff = currentTime - lastTime;
+	// 	}
+	// 	robot->getDrive()->stop();
+	// 
+	// }
 
 
 

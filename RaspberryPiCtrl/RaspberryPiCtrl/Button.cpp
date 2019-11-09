@@ -6,11 +6,14 @@ Button::Button(int buttonPin, int buttonNr)
 	pinMode(buttonPin, INPUT);
 	this->buttonPin = buttonPin;
 	this->I2CfdButton = wiringPiI2CSetup(RASPI_ID);
+	this->buttonNr = buttonNr;
 
 }
 
 int Button::buttonXpressed()
 {
+	wiringPiI2CWriteReg8(I2CfdButton, BUTTON_REG, 0);
+
 	int buttonValue = wiringPiI2CReadReg8(I2CfdButton, BUTTON_REG);
 	int buttonPressed = 0;
 
@@ -55,6 +58,19 @@ int Button::buttonXpressed()
 		// include proper exception/notice
 		break;
 	}
+	notify(buttonPressed);
 	return 1;
+}
+
+char Button::getInput()
+{
+	return '1';
+}
+
+void Button::notify(int buttonNr)
+{
+	for (int i = 0; i < getObserverList()->size(); i++) {
+		getObserverList()->at(i)->update(buttonNr);
+	}
 }
 

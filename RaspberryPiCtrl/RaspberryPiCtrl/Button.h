@@ -1,5 +1,7 @@
 #pragma once
 #include <wiringPiI2C.h>
+#include "IInput.h"
+#include "Subject.h"
 
 #define BUTTON_PIN 23
 #define RASPI_ID 0x28
@@ -15,7 +17,7 @@
 #define BUTTON7 4
 #define BUTTON8 8
 
-class Button
+class Button: public IInput, public Subject
 {
 private: 
 	int buttonPin;
@@ -25,6 +27,8 @@ private:
 public: 
 	Button(int buttonPin, int buttonNr);
 	int buttonXpressed();	// returns which button (out of 8 buttons) is pressed
+	char getInput();
+	void notify(int buttonNr);
 
 };
 

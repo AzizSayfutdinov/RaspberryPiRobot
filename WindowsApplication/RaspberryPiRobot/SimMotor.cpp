@@ -24,5 +24,7 @@ void SimMotor::setPower(double power) {
 	catch (_exception& e) {
 		// TODO: implement proper exception
 	}
+
+
 	
 }

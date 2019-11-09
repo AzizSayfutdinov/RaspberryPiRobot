@@ -1,30 +1,10 @@
-#include "Subject.h"
-#include <iterator>
+#include "..\..\RaspberryPiCtrl\RaspberryPiCtrl\Subject.h"
 
-Subject::~Subject()
+void Subject::attach(Observer* observer)
 {
+	observerList.push_back(observer);
 }
 
-void Subject::attach(Observer* observer) {
-	observers->push_back(observer);
-}
-
-void Subject::detach(Observer* observer) {
-	observers->remove(observer);
-}
-
-void Subject::notify(){
-
-	list<Observer*>::iterator it;
-
-	for (it = observers->begin(); it != observers->end(); ++it) {
-		Observer* o = *it;
-		o->update();
-	}
-
-
-}
-
-Subject::Subject()
+void Subject::detach(Observer* observer)
 {
 }

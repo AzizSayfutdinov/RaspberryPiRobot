@@ -20,7 +20,30 @@
     <ClCompile Include="Server.cpp">
       <Filter>Server</Filter>
     </ClCompile>
-    <ClCompile Include="Robot.cpp" />
+    <ClCompile Include="Robot.cpp">
+      <Filter>Robot</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>DesignPattern\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>DesignPattern\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="IInput.cpp">
+      <Filter>InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerObserver.cpp">
+      <Filter>DesignPattern\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonSubject.cpp">
+      <Filter>DesignPattern\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonObserver.cpp">
+      <Filter>DesignPattern\Observer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RPiMotor.h">
@@ -41,7 +64,30 @@
     <ClInclude Include="Server.h">
       <Filter>Server</Filter>
     </ClInclude>
-    <ClInclude Include="Robot.h" />
+    <ClInclude Include="Robot.h">
+      <Filter>Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>DesignPattern\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>DesignPattern\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IInput.h">
+      <Filter>InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerObserver.h">
+      <Filter>DesignPattern\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonSubject.h">
+      <Filter>DesignPattern\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonObserver.h">
+      <Filter>DesignPattern\Observer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Motor">
@@ -61,6 +107,18 @@
     </Filter>
     <Filter Include="Robot">
       <UniqueIdentifier>{ae82d37f-d95b-4ddd-a8e2-4e9cafcc1fe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DesignPattern">
+      <UniqueIdentifier>{745c13f2-6134-4a1f-8818-53776d7d62ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DesignPattern\Observer">
+      <UniqueIdentifier>{fe25cf68-47c9-4969-8561-9de88ca5fe4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DesignPattern\State">
+      <UniqueIdentifier>{8a815cb7-656a-44fd-b680-2b35d3883bae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InputManager">
+      <UniqueIdentifier>{666e0f79-9d8b-4095-b00b-bb449dde2218}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
