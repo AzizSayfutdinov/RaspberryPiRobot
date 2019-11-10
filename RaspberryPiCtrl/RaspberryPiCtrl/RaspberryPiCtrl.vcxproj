@@ -70,8 +70,16 @@
     </RemotePostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AlignNorthState.cpp" />
+    <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MoveBackwardsLeftState.cpp" />
+    <ClCompile Include="MoveBackwardsRightState.cpp" />
+    <ClCompile Include="MoveBackwardsState.cpp" />
+    <ClCompile Include="MoveForwardLeftState.cpp" />
+    <ClCompile Include="MoveForwardRightState.cpp" />
+    <ClCompile Include="MoveForwardState.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Robot.cpp" />
     <ClCompile Include="RPiCompassEncoder.cpp" />
@@ -80,10 +88,21 @@
     <ClCompile Include="RPiMotor.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="ServerObserver.cpp" />
+    <ClCompile Include="State.cpp" />
     <ClCompile Include="Subject.cpp" />
+    <ClCompile Include="TurnLeftState.cpp" />
+    <ClCompile Include="TurnRightState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AlignNorthState.h" />
+    <ClInclude Include="IdleState.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="MoveBackwardsLeftState.h" />
+    <ClInclude Include="MoveBackwardsRightState.h" />
+    <ClInclude Include="MoveBackwardsState.h" />
+    <ClInclude Include="MoveForwardLeftState.h" />
+    <ClInclude Include="MoveForwardRightState.h" />
+    <ClInclude Include="MoveForwardState.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Robot.h" />
     <ClInclude Include="RPiCompassEncoder.h" />
@@ -92,7 +111,10 @@
     <ClInclude Include="RPiMotor.h" />
     <ClInclude Include="Server.h" />
     <ClInclude Include="ServerObserver.h" />
+    <ClInclude Include="State.h" />
     <ClInclude Include="Subject.h" />
+    <ClInclude Include="TurnLeftState.h" />
+    <ClInclude Include="TurnRightState.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

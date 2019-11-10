@@ -32,6 +32,39 @@
     <ClCompile Include="ServerObserver.cpp">
       <Filter>DesignPattern\Observer</Filter>
     </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>DesignPattern\State</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleState.cpp">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnRightState.cpp">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnLeftState.cpp">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveForwardState.cpp">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveBackwardsState.cpp">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveForwardRightState.cpp">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveForwardLeftState.cpp">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveBackwardsRightState.cpp">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveBackwardsLeftState.cpp">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="AlignNorthState.cpp">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RPiMotor.h">
@@ -64,6 +97,39 @@
     <ClInclude Include="ServerObserver.h">
       <Filter>DesignPattern\Observer</Filter>
     </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>DesignPattern\State</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleState.h">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="TurnRightState.h">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="TurnLeftState.h">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveForwardState.h">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveBackwardsState.h">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveForwardRightState.h">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveForwardLeftState.h">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveBackwardsRightState.h">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveBackwardsLeftState.h">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="AlignNorthState.h">
+      <Filter>DesignPattern\RobotStates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Motor">
@@ -92,6 +158,9 @@
     </Filter>
     <Filter Include="InputManager">
       <UniqueIdentifier>{666e0f79-9d8b-4095-b00b-bb449dde2218}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DesignPattern\RobotStates">
+      <UniqueIdentifier>{d051ba02-605b-46a8-87a9-cb32ad036829}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

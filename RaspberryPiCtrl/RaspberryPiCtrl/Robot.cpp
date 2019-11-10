@@ -13,6 +13,8 @@ Robot::Robot()
 	Robot::odometry = new Odometry(encoderLeft, encoderRight, compass);		// use singleton class
 	
 	Robot::server = new Server();
+
+	Robot::currentState = new IdleState();
 }
 
 Server* Robot::getServer()
@@ -28,5 +30,10 @@ DifferentialDrive* Robot::getDrive()
 Odometry* Robot::getOdometry()
 {
 	return Robot::odometry;
+}
+
+void Robot::setState(State* state)
+{
+	this->currentState = state;
 }
 

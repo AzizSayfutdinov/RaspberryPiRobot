@@ -37,7 +37,81 @@
 using namespace std;
 using namespace std::chrono;
 
-// ==== Functions ====
+// ==== Test Functions ====
+int testTCP();
+void setup();
+void testTicks(RPiMotor* motor, RPiEncoder* encoder);
+void testDriveForwardBackwards(DifferentialDrive* drive, Odometry* odometry);
+void testTurningLeftRight(DifferentialDrive* drive, Odometry* odometry);
+void testCompass();
+void testEncoderFunc();
+
+
+
+// ==== MAIN =====
+int main(void)
+{
+	setup();
+	
+	// TODO: exit with exit code from GUI: while robot->getServer()->reveiveData() != "Exit" in MAIN LOOP	
+
+	Robot* robot = new Robot();
+
+	ServerObserver* so = new ServerObserver();
+	robot->getServer()->attach(so);
+	InputManager* im = new InputManager(robot->getServer());
+
+	while (true) {
+
+		char c = im->getInput();
+
+		long timeout = 200;		// in ms
+	
+		int lastTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+	
+		int diff = 0;
+	
+		if (c == 'a') {
+			robot->getOdometry()->alignNorth(robot->getDrive());
+		}
+	
+		while (diff < timeout) {
+	
+			switch (c)
+			{
+			case 'f': 
+				robot->getDrive()->moveForward();
+				break;
+			case 'b':
+				robot->getDrive()->moveBackward();
+				break;
+			case 's':
+				robot->getDrive()->stop();
+				break;
+			case 'r':
+				robot->getDrive()->turnRight();
+				break;
+			case 'l':
+				robot->getDrive()->turnLeft();
+				break;
+			default:
+				break;
+			}
+	
+	
+			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+			diff = currentTime - lastTime;
+		}
+		robot->getDrive()->stop();
+
+	}
+
+	return 0;
+}
+
+
+// TEST FUNCTION IMPLEMENTATIONS
+
 void setup() {
 	wiringPiSetupGpio();
 
@@ -54,103 +128,8 @@ void setup() {
 	int PwmSuccessful_M1neg = softPwmCreate(MOTOR_RIGHT_NEG, 0, 100);
 	int PwmSuccessful_M2pos = softPwmCreate(MOTOR_LEFT_POS, 0, 100);
 	int PwmSuccessful_M2neg = softPwmCreate(MOTOR_LEFT_NEG, 0, 100);
-
 }
 
-
-void testTicks(RPiMotor* motor, RPiEncoder* encoder) {
-
-	int currentTickCount = 0;
-
-	for (int i = 0; i < 100; i++) {
-
-		motor->setPower(100);
-
-		// if (i == 0) {
-		// 	motor->setPower(100);
-		// }
-		// if (i == 20) {
-		// 	motor->setPower(100);
-		// }
-
-		currentTickCount = encoder->getTicks();
-		cout << "Ticks: " << currentTickCount << endl;
-		this_thread::sleep_for(chrono::milliseconds(10));
-
-	}
-	motor->setPower(0);
-}
-
-void testKeyboardInput() {		// does not work like this: cross compilation needed
-	bool running = true;
-	int c = 0;
-	while (running)
-	{
-		c = 0;
-		this_thread::sleep_for(chrono::milliseconds(50));
-		cout << endl << "Output:  " << c << endl; // exit key - ESC
-		c = getchar();
-		switch (c) {
-		case KEY_UP:
-			cout << endl << "Up: " << c << endl;//key up
-			break;
-		case KEY_DOWN:
-			cout << endl << "Down: " << c << endl;   // key down
-			break;
-		case KEY_LEFT:
-			cout << endl << "Left: " << c << endl;  // key left
-			break;
-		case KEY_RIGHT:
-			cout << endl << "Right: " << c << endl;  // key right
-			break;
-		case KEY_EXIT:
-			running = false;
-			cout << endl << "Ending program:  " << c << endl; // exit key - ESC
-		default:
-			cout << endl << "null" << endl;  // not arrow
-			break;
-		}
-
-
-	}
-}
-
-void testDriveForwardBackwards(DifferentialDrive* drive, Odometry* odometry) {
-
-	int dist = 0;
-	odometry->reset();
-	drive->moveForward();
-	this_thread::sleep_for(chrono::milliseconds(1000));
-	drive->stop();
-	dist = odometry->getDistance();
-	cout << "Distance traveled: " << dist << "mm " << endl;
-
-	delay(1000);
-
-	odometry->reset();
-	drive->moveBackward();
-	this_thread::sleep_for(chrono::milliseconds(1000));
-	drive->stop();
-	dist = odometry->getDistance();
-	cout << "Distance traveled: " << dist << "mm " << endl;
-	// RPiMotor::turnOffAll();
-}
-
-void testTurningLeftRight(DifferentialDrive* drive, Odometry* odometry) {
-	odometry->reset();
-	drive->turnLeft();
-	delay(400);
-	drive->stop();
-
-	delay(500);
-
-	drive->turnRight();
-	delay(400);
-	drive->stop();
-
-	// RPiMotor::resetAll();
-
-}
 
 int testTCP() {
 
@@ -256,213 +235,82 @@ int testTCP() {
 	return 1;
 }
 
+void testTicks(RPiMotor* motor, RPiEncoder* encoder) {
 
-// ==== MAIN =====
-int main(void)
-{
-	setup();
+	int currentTickCount = 0;
 
-	// RPiMotor* motorRight = new RPiMotor(MOTOR_RIGHT_POS, MOTOR_RIGHT_NEG);
-	// RPiMotor* motorLeft = new RPiMotor(MOTOR_LEFT_POS, MOTOR_LEFT_NEG);
-	// RPiEncoder* encoderLeft = new RPiEncoder(ENCODER_LEFT);
-	// RPiEncoder* encoderRight = new RPiEncoder(ENCODER_RIGHT);
-	// 
-	// DifferentialDrive* drive = new DifferentialDrive(motorLeft, motorRight);
-	// Odometry* odometry = new Odometry(encoderLeft, encoderRight);
+	for (int i = 0; i < 100; i++) {
 
-	// while (true) {
-	// 	this_thread::sleep_for(chrono::milliseconds(250));
-	// 	digitalWrite(LED, HIGH);
-	// 	this_thread::sleep_for(chrono::milliseconds(250));
-	// 	digitalWrite(LED, LOW);
-	// }
+		motor->setPower(100);
 
-	// testTCP();
+		// if (i == 0) {
+		// 	motor->setPower(100);
+		// }
+		// if (i == 20) {
+		// 	motor->setPower(100);
+		// }
 
-	// Server* server = new Server();
-	
-	// exit with exit code from GUI: while robot->getServer()->reveiveData() != "Exit"	
+		currentTickCount = encoder->getTicks();
+		cout << "Ticks: " << currentTickCount << endl;
+		this_thread::sleep_for(chrono::milliseconds(10));
 
-	Robot* robot = new Robot();
+	}
+	motor->setPower(0);
+}
 
-	ServerObserver* so = new ServerObserver();
-	robot->getServer()->attach(so);
-	InputManager* im = new InputManager(robot->getServer());
+void testDriveForwardBackwards(DifferentialDrive* drive, Odometry* odometry) {
+
+	int dist = 0;
+	odometry->reset();
+	drive->moveForward();
+	this_thread::sleep_for(chrono::milliseconds(1000));
+	drive->stop();
+	dist = odometry->getDistance();
+	cout << "Distance traveled: " << dist << "mm " << endl;
+
+	delay(1000);
+
+	odometry->reset();
+	drive->moveBackward();
+	this_thread::sleep_for(chrono::milliseconds(1000));
+	drive->stop();
+	dist = odometry->getDistance();
+	cout << "Distance traveled: " << dist << "mm " << endl;
+	// RPiMotor::turnOffAll();
+}
+
+void testTurningLeftRight(DifferentialDrive* drive, Odometry* odometry) {
+	odometry->reset();
+	drive->turnLeft();
+	delay(400);
+	drive->stop();
+
+	delay(500);
+
+	drive->turnRight();
+	delay(400);
+	drive->stop();
+
+	// RPiMotor::resetAll();
+
+}
+
+void testCompass() {
+	RPiCompassI2C* compass = new RPiCompassI2C(COMPASS_ID);
 
 	while (true) {
 
-		char c = im->getInput();
-
-		long timeout = 200;		// in ms
-	
-		int lastTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-	
-		int diff = 0;
-	
-		if (c == 'a') {
-			robot->getOdometry()->alignNorth(robot->getDrive());
-		}
-	
-		while (diff < timeout) {
-	
-			switch (c)
-			{
-			case 'f': 
-				robot->getDrive()->moveForward();
-				break;
-			case 'b':
-				robot->getDrive()->moveBackward();
-				break;
-			case 's':
-				robot->getDrive()->stop();
-				break;
-			case 'r':
-				robot->getDrive()->turnRight();
-				break;
-			case 'l':
-				robot->getDrive()->turnLeft();
-				break;
-			default:
-				break;
-			}
-	
-	
-			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-			diff = currentTime - lastTime;
-		}
-		robot->getDrive()->stop();
-
+		cout << "Value 8 bit: " << compass->getDirection8bit() << "\t Value 16 bit: " << compass->getDirection() << endl;
+		this_thread::sleep_for(chrono::milliseconds(250));
 	}
+}
 
-
-
-
-
-	// RPiCompassI2C* compass = new RPiCompassI2C(COMPASS_ID);
-	// 
-	// while (true) {
-	// 
-	// 	cout << "Value 8 bit: " << compass->getDirection8bit() << "\t Value 16 bit: " << compass->getDirection() << endl;
-	// 	this_thread::sleep_for(chrono::milliseconds(250));
-	// }
-	// 
-	// 
-	// // MAIN LOOP
-	// Robot* robot = new Robot();
-	// while (true) {
-	// 
-	// 	// Receive Handler implementieren, damit sowohl vom Client als auch 
-	// 	// vom Button die Commandos entgegen genommen werden können. 
-	// 	// Aus dem Handler holt man einfach die Daten raus, ohne zu wissen, 
-	// 	// woher diese genau kommen. 
-	// 	// Beim Button: 
-	// 	// char c ist zunächste das Zeichen, das vom Client ankommt. Wenn ein Button
-	// 	// degrückt wird, wird c überschrieben. 
-	// 
-	// 	robot->getServer()->receiveData();
-	// 	char* buffer = robot->getServer()->getBuffer();
-	// 	char c = buffer[0];
-	// 
-	// 	long timeout = 200;		// in ms
-	// 
-	// 	int lastTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-	// 
-	// 	int diff = 0;
-	// 
-	// 	if (c == 'a') {
-	// 		robot->getOdometry()->alignNorth(robot->getDrive());
-	// 	}
-	// 
-	// 	while (diff < timeout) {
-	// 
-	// 		switch (c)
-	// 		{
-	// 		case 'f': 
-	// 			robot->getDrive()->moveForward();
-	// 			break;
-	// 		case 'b':
-	// 			robot->getDrive()->moveBackward();
-	// 			break;
-	// 		case 's':
-	// 			robot->getDrive()->stop();
-	// 			break;
-	// 		case 'r':
-	// 			robot->getDrive()->turnRight();
-	// 			break;
-	// 		case 'l':
-	// 			robot->getDrive()->turnLeft();
-	// 			break;
-	// 		default:
-	// 			break;
-	// 		}
-	// 
-	// 
-	// 		int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-	// 		diff = currentTime - lastTime;
-	// 	}
-	// 	robot->getDrive()->stop();
-	// 
-	// }
-
-
-
-
-
-
-
-
-
-
-	// testTurningLeftRight(drive, odometry);
-	// this_thread::sleep_for(chrono::milliseconds(100));
-	// testDriveForwardBackwards(drive, odometry);
-
-	// testTicks(motorRight, encoderRight);
-
-	// testKeyboardInput();		// cross compilation needed
-
-	// Test Encoder functionality
-	// while (true) {
-	// 	int x = digitalRead(ENCODER_RIGHT);
-	// 	int y = digitalRead(ENCODER_LEFT);
-	// 	cout << "Value right: " << x << "\tValue left: " << y << endl;
-	// 	this_thread::sleep_for(chrono::milliseconds(100));
-	// }
-
-
-	// TEIL 1
-	// motorRight->setPower(50);
-	// 
-	// int encoderRightValue = 99;
-	// int encoderLeftValue = 99;
-	// 
-	// for (int i = 0; i < 30; i++) {
-	// 	encoderLeftValue = digitalRead(ENCODER_LEFT);
-	// 	encoderRightValue = digitalRead(ENCODER_RIGHT);
-	// 
-	// 	cout << "EN_left: " << encoderLeftValue << "\tEN_right: " << encoderRightValue << endl;
-	// 	
-	// 	this_thread::sleep_for(chrono::milliseconds(10));
-	// 
-	// }
-	// 
-	// cout << " TEIL 2" << endl << endl;
-	// 
-	// // TEIL 2
-	// motorRight->setPower(10);
-	// 
-	// encoderRightValue = 99;
-	// encoderLeftValue = 99;
-	// 
-	// for (int i = 0; i < 30; i++) {
-	// 	encoderLeftValue = digitalRead(ENCODER_LEFT);
-	// 	encoderRightValue = digitalRead(ENCODER_RIGHT);
-	// 
-	// 	cout << "EN_left: " << encoderLeftValue << "\tEN_right: " << encoderRightValue << endl;
-	// 
-	// 	this_thread::sleep_for(chrono::milliseconds(10));
-	// 
-	// }
-
-	return 0;
+void testEncoderFunc() {
+	 // Test Encoder functionality
+	 while (true) {
+ 		int x = digitalRead(ENCODER_RIGHT);
+ 		int y = digitalRead(ENCODER_LEFT);
+ 		cout << "Value right: " << x << "\tValue left: " << y << endl;
+ 		this_thread::sleep_for(chrono::milliseconds(100));
+	 }
 }
