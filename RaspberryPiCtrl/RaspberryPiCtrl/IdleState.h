@@ -2,10 +2,12 @@
 #include "State.h"
 #include "Robot.h"
 
+
 class IdleState: public State
 {
 private: 
 	Robot* robot;
+
 public: 
 	IdleState(Robot* robot);
 
@@ -19,7 +21,7 @@ public:
 	void moveBackwardsRight();
 	void moveBackwardsLeft();
 
-	virtual void alignNorth();
+	void alignNorth();
 	
 
 };

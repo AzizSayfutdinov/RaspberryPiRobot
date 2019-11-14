@@ -3,6 +3,9 @@
 // Interface defining the transition functions
 class State
 {
+protected: 
+	double turnRatio = 0.7;
+
 public: 
 	// Transitions with timeout Timer
 	virtual void idle() = 0;

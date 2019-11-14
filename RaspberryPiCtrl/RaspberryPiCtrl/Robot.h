@@ -6,7 +6,6 @@
 #include "Odometry.h"
 #include "Server.h"
 #include "State.h"
-#include "IdleState.h"
 
 class Robot
 {
@@ -28,6 +27,7 @@ public:
 	DifferentialDrive* getDrive();
 	Odometry* getOdometry();
 	void setState(State* state);
+	State* getCurrentState();
 
 };
 

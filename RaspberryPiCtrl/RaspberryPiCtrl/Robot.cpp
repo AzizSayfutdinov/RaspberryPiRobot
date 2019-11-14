@@ -1,6 +1,5 @@
 #include "Robot.h"
 
-
 Robot::Robot()
 {
 	Robot::motorRight = new RPiMotor(MOTOR_RIGHT_POS, MOTOR_RIGHT_NEG);
@@ -14,7 +13,7 @@ Robot::Robot()
 	
 	Robot::server = new Server();
 
-	Robot::currentState = new IdleState();
+	// Robot::currentState;		// initial state = idle state
 }
 
 Server* Robot::getServer()
@@ -36,4 +35,11 @@ void Robot::setState(State* state)
 {
 	this->currentState = state;
 }
+
+State* Robot::getCurrentState()
+{
+	return currentState;
+}
+
+
 

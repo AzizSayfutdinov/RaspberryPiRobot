@@ -1,0 +1,2 @@
+https://answers.opencv.org/question/197414/sendreceive-vector-mat-over-socket-cc/
+https://www.learnopencv.com/install-opencv-4-on-ubuntu-18-04/

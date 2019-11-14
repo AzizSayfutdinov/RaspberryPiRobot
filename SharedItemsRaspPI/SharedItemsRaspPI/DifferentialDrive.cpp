@@ -8,19 +8,15 @@ DifferentialDrive::DifferentialDrive(Motor* motorLeft, Motor* motorRight) {
 }
 
 void DifferentialDrive::moveForward() {
-	// distance traveled = ticks * mmPerTick
-	double power = 30;
-	// follow a ramp with for loop up to 100%
-	motorLeft->setPower(power);
-	motorRight->setPower(power);
+
+	motorLeft->setPower(maxPower);
+	motorRight->setPower(maxPower);
 }
 
 void DifferentialDrive::moveBackward()
 {
-	double power = 30;
-	// follow a ramp with for loop up to 100%
-	motorLeft->setPower(-power);
-	motorRight->setPower(-power);
+	motorLeft->setPower(-maxPower);
+	motorRight->setPower(-maxPower);
 }
 
 void DifferentialDrive::stop() {
@@ -32,28 +28,32 @@ void DifferentialDrive::stop() {
 }
 
 void DifferentialDrive::turnLeft() {
-	// turning around a certain center point. Should be calculated
-	// additional input: degrees in positive rotational direction
-	// use odometry class to access encoder and get the values for 
-	// the left and right encoder
-	// -> calculate needed tick-difference between each encoder
-	// for the needed angle 
-	// use the difference as stop condition for the while loop
-	// and stop the motor
-	int degrees = 0;
-
-	int power = 50;
-	motorLeft->setPower(power);
-	motorRight->setPower(-power);
+	motorLeft->setPower(-maxPower);
+	motorRight->setPower(maxPower);
 }
 
-void DifferentialDrive::turnLeft(int power) {
-	motorLeft->setPower(power);
-	motorRight->setPower(-power);
+void DifferentialDrive::turnLeft(double ratio) {
+	motorLeft->setPower(ratio*maxPower);
+	motorRight->setPower(maxPower);
 }
 
 void DifferentialDrive::turnRight() {
-	int power = 50;
-	motorRight->setPower(power);
-	motorLeft->setPower(-power);
+	motorRight->setPower(-maxPower);
+	motorLeft->setPower(maxPower);
+}
+
+void DifferentialDrive::turnRight(double ratio)
+{
+	motorLeft->setPower(maxPower);
+	motorRight->setPower(ratio * maxPower);
+}
+
+void DifferentialDrive::setMaxPower(double maxPower)
+{
+	this->maxPower = maxPower;
+}
+
+double DifferentialDrive::getMaxPower()
+{
+	return maxPower;
 }
