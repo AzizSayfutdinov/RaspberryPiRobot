@@ -23,6 +23,7 @@
 #include "Robot.h"
 #include "RPiCompassI2C.h"
 #include "InputManager.h"
+#include "State.h"
 
 #define LED 17
 
@@ -56,6 +57,7 @@ int main(void)
 	// TODO: exit with exit code from GUI: while robot->getServer()->reveiveData() != "Exit" in MAIN LOOP	
 
 	Robot* robot = new Robot();
+	State* currentState;
 
 	ServerObserver* so = new ServerObserver();
 	robot->getServer()->attach(so);

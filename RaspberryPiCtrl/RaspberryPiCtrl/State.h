@@ -1,11 +1,15 @@
 #pragma once
+#include "Robot.h"
 
-// Interface defining the transition functions
 class State
 {
+protected: 
+	bool active = false;		// default
+	Robot* robot;
 
 public: 
-	// Transitions with timeout Timer
 	virtual int execute() = 0;
+	virtual bool isActive();
+	virtual void setActive(bool active);
 };
 

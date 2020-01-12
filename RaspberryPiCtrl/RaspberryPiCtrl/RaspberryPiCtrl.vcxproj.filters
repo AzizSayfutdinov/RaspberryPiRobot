@@ -35,6 +35,12 @@
     <ClCompile Include="State.cpp">
       <Filter>DesignPattern\State</Filter>
     </ClCompile>
+    <ClCompile Include="IdleState.cpp">
+      <Filter>DesignPattern\State\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="ForwardState.cpp">
+      <Filter>DesignPattern\State\RobotStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RPiMotor.h">
@@ -70,6 +76,12 @@
     <ClInclude Include="State.h">
       <Filter>DesignPattern\State</Filter>
     </ClInclude>
+    <ClInclude Include="IdleState.h">
+      <Filter>DesignPattern\State\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="ForwardState.h">
+      <Filter>DesignPattern\State\RobotStates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Motor">
@@ -99,7 +111,7 @@
     <Filter Include="InputManager">
       <UniqueIdentifier>{666e0f79-9d8b-4095-b00b-bb449dde2218}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DesignPattern\RobotStates">
+    <Filter Include="DesignPattern\State\RobotStates">
       <UniqueIdentifier>{d051ba02-605b-46a8-87a9-cb32ad036829}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

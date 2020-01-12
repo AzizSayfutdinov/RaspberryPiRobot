@@ -12,8 +12,6 @@ Robot::Robot()
 	Robot::odometry = new Odometry(encoderLeft, encoderRight, compass);		// TODO: use singleton class
 	
 	Robot::server = new Server();
-
-	Robot::currentState;		// initial state = idle state
 }
 
 Server* Robot::getServer()
@@ -31,15 +29,6 @@ Odometry* Robot::getOdometry()
 	return Robot::odometry;
 }
 
-void Robot::setState(State* state)
-{
-	this->currentState = state;		// FSM	
-}									// TODO: make NFA to have multiple states at once
-
-State* Robot::getCurrentState()
-{
-	return currentState;
-}
 
 
 

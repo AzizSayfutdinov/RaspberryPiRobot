@@ -5,7 +5,6 @@
 #include "RPiCompassI2C.h"
 #include "Odometry.h"
 #include "Server.h"
-#include "State.h"
 
 class Robot
 {
@@ -19,15 +18,12 @@ private:
 	Odometry* odometry;  
 	RPiCompassI2C* compass;
 	Server* server;
-	State* currentState;
 
 public: 
 	Robot();
 	Server* getServer();
 	DifferentialDrive* getDrive();
 	Odometry* getOdometry();
-	void setState(State* state);
-	State* getCurrentState();
 
 };
 
