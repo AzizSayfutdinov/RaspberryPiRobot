@@ -6,6 +6,10 @@
 //	robot->getDrive()->moveForward();
 //}
 
+ForwardState::ForwardState(Robot* robot) {
+	this->robot = robot;
+}
+
 int ForwardState::execute() {
 
 	robot->getDrive()->moveForward();

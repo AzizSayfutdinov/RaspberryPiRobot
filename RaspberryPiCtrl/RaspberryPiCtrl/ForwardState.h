@@ -3,6 +3,8 @@
 class ForwardState :
 	public State
 {
+public:
+	ForwardState(Robot* robot);
 	int execute();
 };
 

@@ -70,6 +70,7 @@
     </RemotePostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BackwardState.cpp" />
     <ClCompile Include="ForwardState.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -84,8 +85,11 @@
     <ClCompile Include="ServerObserver.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="Subject.cpp" />
+    <ClCompile Include="ToLeftState.cpp" />
+    <ClCompile Include="ToRightState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackwardState.h" />
     <ClInclude Include="ForwardState.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="InputManager.h" />
@@ -99,6 +103,8 @@
     <ClInclude Include="ServerObserver.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Subject.h" />
+    <ClInclude Include="ToLeftState.h" />
+    <ClInclude Include="ToRightState.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

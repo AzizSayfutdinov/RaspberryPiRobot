@@ -3,6 +3,8 @@
 class IdleState :
 	public State
 {
+public: 
+	IdleState(Robot* robot);
 	int execute();
 };
 

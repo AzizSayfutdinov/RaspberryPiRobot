@@ -9,7 +9,8 @@ protected:
 
 public: 
 	virtual int execute() = 0;
-	virtual bool isActive();
-	virtual void setActive(bool active);
+	bool isActive();
+	void setActive(bool active);
+
 };
 

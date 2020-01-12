@@ -23,7 +23,13 @@
 #include "Robot.h"
 #include "RPiCompassI2C.h"
 #include "InputManager.h"
+
 #include "State.h"
+#include "IdleState.h"
+#include "ForwardState.h"
+#include "BackwardState.h"
+#include "ToLeftState.h"
+#include "ToRightState.h"
 
 #define LED 17
 
@@ -57,7 +63,7 @@ int main(void)
 	// TODO: exit with exit code from GUI: while robot->getServer()->reveiveData() != "Exit" in MAIN LOOP	
 
 	Robot* robot = new Robot();
-	State* currentState;
+	State* currentState = new IdleState(robot);
 
 	ServerObserver* so = new ServerObserver();
 	robot->getServer()->attach(so);
@@ -82,24 +88,30 @@ int main(void)
 			switch (c)
 			{
 			case 'f': 
-				robot->getDrive()->moveForward();
+				// robot->getDrive()->moveForward();
+				currentState = new ForwardState(robot);
 				break;
 			case 'b':
-				robot->getDrive()->moveBackward();
+				// robot->getDrive()->moveBackward();
+				currentState = new BackwardState(robot);
 				break;
 			case 's':
-				robot->getDrive()->stop();
+				// robot->getDrive()->stop();
+				currentState = new IdleState(robot);
 				break;
 			case 'r':
-				robot->getDrive()->turnRight();
+				// robot->getDrive()->turnRight();
+				currentState = new ToRightState(robot);
 				break;
 			case 'l':
-				robot->getDrive()->turnLeft();
+				// robot->getDrive()->turnLeft();
+				currentState = new ToLeftState(robot);
 				break;
 			default:
+				currentState = new IdleState(robot);
 				break;
 			}
-		
+			currentState->execute();
 			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 			diff = currentTime - lastTime;
 		}

@@ -3,6 +3,8 @@
 class BackwardState :
 	public State
 {
+public:
+	BackwardState(Robot* robot);
 	int execute();
 };
 
