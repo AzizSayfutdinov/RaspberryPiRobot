@@ -97,8 +97,7 @@ int main(void)
 			default:
 				break;
 			}
-	
-	
+		
 			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 			diff = currentTime - lastTime;
 		}

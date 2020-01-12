@@ -14,6 +14,13 @@ double RPiMotor::getPower() {
 
 void RPiMotor::setPower(double power) {
 
+	// PROBLEM
+	// At the moment, the outputs have to be set twice in order to start
+	// TODO: Include the encoder as a property to the motor and check
+	// whether the motor actually works
+
+	// temporary fix: set outputs twice
+
 	if (power < -100 && power > 100) {
 		// throw exception
 	}
@@ -22,24 +29,30 @@ void RPiMotor::setPower(double power) {
 
 	if ((int)power == 0){	
 
-		softPwmWrite(motorPinPos, 0);
-		softPwmWrite(motorPinNeg, 0);
-		digitalWrite(motorPinPos, LOW);
-		digitalWrite(motorPinNeg, LOW);
-
+		for (int i = 0; i < 2; i++)
+		{
+			softPwmWrite(motorPinPos, 0);
+			softPwmWrite(motorPinNeg, 0);
+			digitalWrite(motorPinPos, LOW);
+			digitalWrite(motorPinNeg, LOW);
+		}
 	}
 	if (power > 0) {	// motor in forward mode
-		softPwmWrite(motorPinNeg, 0);
-		softPwmWrite(motorPinPos, (int)power);
-
+		
+		for (int i = 0; i < 2; i++)
+		{
+			softPwmWrite(motorPinNeg, 0);
+			softPwmWrite(motorPinPos, (int)power);
+		}
 	}
 	else				// motor in forward mode
 	{
-		softPwmWrite(motorPinPos, 0);
-		softPwmWrite(motorPinNeg, -(int)power);		// set sign to positive
+		for (int i = 0; i < 2; i++)
+		{
+			softPwmWrite(motorPinPos, 0);
+			softPwmWrite(motorPinNeg, -(int)power);		// set sign to positive
+		}
 	}
-
-
 }
 
 void RPiMotor::resetAll()
