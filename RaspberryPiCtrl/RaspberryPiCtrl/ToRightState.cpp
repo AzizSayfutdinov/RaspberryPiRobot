@@ -4,8 +4,8 @@ ToRightState::ToRightState(Robot* robot) {
 	this->robot = robot;
 }
 
-int ToRightState::execute()
+void* ToRightState::execute(void*)
 {
-	robot->getDrive()->turnRight();
+	robot->getDrive()->turnRight(0);
 	return 0;
 }

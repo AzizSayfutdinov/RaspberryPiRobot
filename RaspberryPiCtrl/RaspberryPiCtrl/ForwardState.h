@@ -5,6 +5,6 @@ class ForwardState :
 {
 public:
 	ForwardState(Robot* robot);
-	int execute();
+	void* execute(void*);
 };
 

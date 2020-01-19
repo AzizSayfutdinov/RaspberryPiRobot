@@ -50,6 +50,9 @@
     <ClCompile Include="BackwardState.cpp">
       <Filter>DesignPattern\State\RobotStates</Filter>
     </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RPiMotor.h">
@@ -99,6 +102,9 @@
     </ClInclude>
     <ClInclude Include="BackwardState.h">
       <Filter>DesignPattern\State\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

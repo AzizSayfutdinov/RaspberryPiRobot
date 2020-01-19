@@ -4,8 +4,8 @@ ToLeftState::ToLeftState(Robot* robot) {
 	this->robot = robot;
 }
 
-int ToLeftState::execute()
+void* ToLeftState::execute(void*)
 {
-	robot->getDrive()->turnLeft();
+	robot->getDrive()->turnLeft(0);
 	return 0;
 }

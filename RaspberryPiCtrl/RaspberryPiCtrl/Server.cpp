@@ -38,7 +38,7 @@ int Server::setup()
 	// 	return -1;
 	// }
 
-		// create a socket
+	// create a socket
 	listening = socket(AF_INET, SOCK_STREAM, 0);		// INET = IPv4; listening is a socket descriptor
 	if (listening == -1) {
 		cerr << "Can't create a socket!";
@@ -59,7 +59,7 @@ int Server::setup()
 
 	// Mark the socket for listening
 	if (listen(listening, SOMAXCONN) == -1) {
-		cerr << "Can't listen!";
+		cerr << "Can't listen!" << errno;
 		return -3;
 	}
 

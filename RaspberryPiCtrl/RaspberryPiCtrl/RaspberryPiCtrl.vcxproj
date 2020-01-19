@@ -84,6 +84,7 @@
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="ServerObserver.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="ToLeftState.cpp" />
     <ClCompile Include="ToRightState.cpp" />
@@ -102,6 +103,7 @@
     <ClInclude Include="Server.h" />
     <ClInclude Include="ServerObserver.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="StateManager.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="ToLeftState.h" />
     <ClInclude Include="ToRightState.h" />

@@ -3,12 +3,12 @@
 
 class State
 {
-protected: 
+protected:
 	bool active = false;		// default
 	Robot* robot;
 
-public: 
-	virtual int execute() = 0;
+public:
+	virtual void* execute(void*) = 0;
 	bool isActive();
 	void setActive(bool active);
 

@@ -3,7 +3,6 @@
 #include "Observer.h"
 #include "Server.h"
 #include "ServerObserver.h"
-#include <vector>
 
 class InputManager: public Observer
 {
