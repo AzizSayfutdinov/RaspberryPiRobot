@@ -6,6 +6,6 @@ ToRightState::ToRightState(Robot* robot) {
 
 int ToRightState::execute()
 {
-	robot->getDrive()->turnRight();
+	robot->getDrive()->turnRight(0);
 	return 0;
 }

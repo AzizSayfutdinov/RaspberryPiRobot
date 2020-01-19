@@ -23,13 +23,10 @@
 #include "Robot.h"
 #include "RPiCompassI2C.h"
 #include "InputManager.h"
+#include "StateManager.h"
 
 #include "State.h"
-#include "IdleState.h"
-#include "ForwardState.h"
-#include "BackwardState.h"
-#include "ToLeftState.h"
-#include "ToRightState.h"
+
 
 #define LED 17
 
@@ -63,11 +60,12 @@ int main(void)
 	// TODO: exit with exit code from GUI: while robot->getServer()->reveiveData() != "Exit" in MAIN LOOP	
 
 	Robot* robot = new Robot();
-	State* currentState = new IdleState(robot);
 
 	ServerObserver* so = new ServerObserver();
 	robot->getServer()->attach(so);
 	InputManager* im = new InputManager(robot->getServer());
+	StateManager* sm = new StateManager(robot);
+	State* currentState;
 
 	while (true) {
 
@@ -85,38 +83,22 @@ int main(void)
 	
 		while (diff < timeout) {
 	
-			switch (c)
-			{
-			case 'f': 
-				// robot->getDrive()->moveForward();
-				currentState = new ForwardState(robot);
-				break;
-			case 'b':
-				// robot->getDrive()->moveBackward();
-				currentState = new BackwardState(robot);
-				break;
-			case 's':
-				// robot->getDrive()->stop();
-				currentState = new IdleState(robot);
-				break;
-			case 'r':
-				// robot->getDrive()->turnRight();
-				currentState = new ToRightState(robot);
-				break;
-			case 'l':
-				// robot->getDrive()->turnLeft();
-				currentState = new ToLeftState(robot);
-				break;
-			default:
-				currentState = new IdleState(robot);
-				break;
-			}
+			// DFSM
+			currentState = sm->updateCurrentState(c);	// update returns type State*. I think I need typecasting
 			currentState->execute();
+
+			// NFSM
+			//currentStateSet = sm->getStates(string s);
+			//for each (State* s in currentStateSet)
+			//{
+			//		s->setActive() = true;
+			//}
+			// define for each state a pthread
+
 			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 			diff = currentTime - lastTime;
 		}
 		robot->getDrive()->stop();
-
 	}
 
 	return 0;

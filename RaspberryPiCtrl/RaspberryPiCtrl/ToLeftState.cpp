@@ -6,6 +6,6 @@ ToLeftState::ToLeftState(Robot* robot) {
 
 int ToLeftState::execute()
 {
-	robot->getDrive()->turnLeft();
+	robot->getDrive()->turnLeft(0);
 	return 0;
 }
