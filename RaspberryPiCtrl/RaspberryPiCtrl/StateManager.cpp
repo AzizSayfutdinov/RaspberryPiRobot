@@ -5,6 +5,8 @@
 #include "ToLeftState.h"
 #include "ToRightState.h"
 #include "AlignNorthState.h"
+#include "DriveRectangleState.h"
+#include "LedOnOffState.h"
 
 StateManager::StateManager(Handler* handler)
 {
@@ -35,6 +37,12 @@ State* StateManager::updateCurrentState(char inputChar)
 		break;
 	case 'a':
 		return new AlignNorthState(handler);
+		break;
+	case 'd': 
+		return new DriveRectangleState(handler);
+		break;
+	case 'o':
+		return new LedOnOffState(handler);
 		break;
 	default:
 		return new IdleState(handler);

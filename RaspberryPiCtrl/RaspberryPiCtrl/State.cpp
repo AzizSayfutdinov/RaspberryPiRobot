@@ -1,9 +1,9 @@
 #include "State.h"
 
-bool State::isActive() {
-	return active;
+bool State::isPeriodic() {
+	return periodic;
 }
 
-void State::setActive(bool active) {
-	this->active = active;
+void State::setPeriodic(bool periodic) {
+	this->periodic = periodic;
 }

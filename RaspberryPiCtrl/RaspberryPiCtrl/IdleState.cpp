@@ -5,6 +5,5 @@ IdleState::IdleState(Handler* handler) {
 }
 
 void IdleState::execute() {
-	// robot->getDrive()->stop();
 	handler->drive->stop();
 }
