@@ -19,26 +19,26 @@ State* StateManager::updateCurrentState(char inputChar)
 	{
 	case 'f':
 		// robot->getDrive()->moveForward();
-		return new ForwardState(robot);
+		return currentState = new ForwardState(robot);
 		break;
 	case 'b':
 		// robot->getDrive()->moveBackward();
-		return new BackwardState(robot);
+		return currentState = new BackwardState(robot);
 		break;
 	case 's':
 		// robot->getDrive()->stop();
-		return new IdleState(robot);
+		return currentState = new IdleState(robot);
 		break;
 	case 'r':
 		// robot->getDrive()->turnRight();
-		return new ToRightState(robot);
+		return currentState = new ToRightState(robot);
 		break;
 	case 'l':
 		// robot->getDrive()->turnLeft();
-		return new ToLeftState(robot);
+		return currentState = new ToLeftState(robot);
 		break;
 	default:
-		return new IdleState(robot);
+		return currentState = new IdleState(robot);
 		break;
 	}
 }

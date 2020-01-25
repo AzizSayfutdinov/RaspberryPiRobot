@@ -12,10 +12,6 @@
 #include <arpa/inet.h>
 #include <string.h>
 #include <string>
-#include <pthread.h>
-#include <mutex>
-#include <list>
-#include <vector>
 
 #include <chrono>
 
@@ -54,8 +50,7 @@ void testTurningLeftRight(DifferentialDrive* drive, Odometry* odometry);
 void testCompass();
 void testEncoderFunc();
 
-pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t mutex2 = PTHREAD_MUTEX_INITIALIZER;
+
 
 // ==== MAIN =====
 int main(void)
@@ -72,16 +67,6 @@ int main(void)
 	StateManager* sm = new StateManager(robot);
 	State* currentState;
 
-	vector<State*> currentStateSet;
-	vector<pthread_t> threadList;
-	vector<char> inputList;
-
-	pthread_t thread1;
-	pthread_t thread2;
-
-	threadList.insert(threadList.begin(), thread1);
-	threadList.insert(threadList.begin(), thread2);
-
 	while (true) {
 
 		char c = im->getInput();
@@ -91,45 +76,6 @@ int main(void)
 		int lastTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 	
 		int diff = 0;
-
-		// IMPLEMENTING NFA
-		
-		inputList.insert(inputList.begin(), im->getInput());
-		this_thread::sleep_for(chrono::milliseconds(25));		// TODO: use timer for more precise timing
-		inputList.insert(inputList.begin(), im->getInput());
-		this_thread::sleep_for(chrono::milliseconds(25));
-
-		// using pthread for non static functions
-		// 1. define pointer
-		typedef void* (*THREADFUNCPTR)(void*);
-		// 2. pointer to object
-		currentState = sm->updateCurrentState(im->getInput());
-		// 3. create pthread ID
-		pthread_t threadTest; 
-		// 4. use pthread_create()
-
-
-		for (int i = 0; i < inputList.size(); i++) {
-			currentState = sm->updateCurrentState(inputList.at(i));
-			currentStateSet.insert(currentStateSet.begin(), currentState);
-			currentState->setActive(true);
-			pthread_create(&threadList.at(i), NULL, (THREADFUNCPTR)&State::execute, currentState);	// try first without mutex
-		}
-		// &A::foo
-		// aa->*foo
-
-		// IDEE
-		// the funktionen, also state.execute in einer liste speichern
-		// durch die liste iterieren und dabei von active auf not active setzen
-		// den timer checken
-
-		// while loop used as timer
-		while (diff < timeout) {
-
-			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-			diff = currentTime - lastTime;
-
-		}
 	
 		if (c == 'a') {
 			robot->getOdometry()->alignNorth(robot->getDrive());
@@ -139,7 +85,7 @@ int main(void)
 	
 			// DFSM
 			currentState = sm->updateCurrentState(c);	// update returns type State*. I think I need typecasting
-			currentState->execute(NULL);
+			currentState->execute();
 
 			// NFSM
 			//currentStateSet = sm->getStates(string s);
