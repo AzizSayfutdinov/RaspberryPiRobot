@@ -53,6 +53,12 @@
     <ClCompile Include="StateManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="Launcher.cpp">
+      <Filter>Launcher</Filter>
+    </ClCompile>
+    <ClCompile Include="Handler.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RPiMotor.h">
@@ -106,6 +112,12 @@
     <ClInclude Include="StateManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
+    <ClInclude Include="Launcher.h">
+      <Filter>Launcher</Filter>
+    </ClInclude>
+    <ClInclude Include="Handler.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Motor">
@@ -137,6 +149,12 @@
     </Filter>
     <Filter Include="Managers">
       <UniqueIdentifier>{666e0f79-9d8b-4095-b00b-bb449dde2218}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Launcher">
+      <UniqueIdentifier>{e72df4f3-6141-4c4a-825c-d38707b1ab1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HelperClasses">
+      <UniqueIdentifier>{cb5a62ad-a952-4adc-9cef-fb5ed4a3156c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,13 +1,14 @@
 #include "BackwardState.h"
 
-BackwardState::BackwardState(Robot* robot) {
-	this->robot = robot;
+BackwardState::BackwardState(Handler* handler) {
+	this->handler = handler;
 }
 
 void BackwardState::execute()
 {
 	if (active) {
-		robot->getDrive()->moveBackward();
+		// robot->getDrive()->moveBackward();
+		handler->drive->moveBackward();
 	}
 	
 }

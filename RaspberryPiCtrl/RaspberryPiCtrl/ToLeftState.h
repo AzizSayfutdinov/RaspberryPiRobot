@@ -4,7 +4,7 @@ class ToLeftState :
 	public State
 {
 public:
-	ToLeftState(Robot* robot);
+	ToLeftState(Handler* handler);
 	void execute();
 };
 

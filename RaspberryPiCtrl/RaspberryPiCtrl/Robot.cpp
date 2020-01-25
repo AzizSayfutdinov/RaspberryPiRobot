@@ -29,6 +29,16 @@ Odometry* Robot::getOdometry()
 	return Robot::odometry;
 }
 
+State* Robot::getCurrentState()
+{
+	return currentState;
+}
+
+void Robot::setCurrentState(State* state)
+{
+	currentState = state;
+}
+
 
 
 

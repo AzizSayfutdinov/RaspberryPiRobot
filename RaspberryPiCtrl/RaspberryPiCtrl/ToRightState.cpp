@@ -1,10 +1,11 @@
 #include "ToRightState.h"
 
-ToRightState::ToRightState(Robot* robot) {
-	this->robot = robot;
+ToRightState::ToRightState(Handler* handler) {
+	this->handler = handler;
 }
 
 void ToRightState::execute()
 {
-	robot->getDrive()->turnRight(0);
+	// robot->getDrive()->turnRight(0);
+	handler->drive->turnRight(0);
 }

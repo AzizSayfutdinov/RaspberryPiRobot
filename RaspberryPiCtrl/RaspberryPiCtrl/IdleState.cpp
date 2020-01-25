@@ -1,9 +1,10 @@
 #include "IdleState.h"
 
-IdleState::IdleState(Robot* robot) {
-	this->robot = robot;
+IdleState::IdleState(Handler* handler) {
+	this->handler = handler;
 }
 
 void IdleState::execute() {
-	robot->getDrive()->stop();
+	// robot->getDrive()->stop();
+	handler->drive->stop();
 }

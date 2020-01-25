@@ -1,11 +1,11 @@
 #pragma once
-#include "Robot.h"
+#include "Handler.h"
 
 class State
 {
 protected:
 	bool active = true;		// default
-	Robot* robot;
+	Handler* handler;
 
 public:
 	virtual void execute() = 0;

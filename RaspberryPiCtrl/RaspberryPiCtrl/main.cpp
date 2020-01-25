@@ -26,6 +26,7 @@
 #include "StateManager.h"
 
 #include "State.h"
+#include "Handler.h"
 
 
 #define LED 17
@@ -64,8 +65,9 @@ int main(void)
 	ServerObserver* so = new ServerObserver();
 	robot->getServer()->attach(so);
 	InputManager* im = new InputManager(robot->getServer());
-	StateManager* sm = new StateManager(robot);
-	State* currentState;
+	Handler* handler = new Handler(robot->getDrive(), robot->getOdometry());
+	StateManager* sm = new StateManager(handler);
+	// State* currentState;
 
 	while (true) {
 
@@ -83,9 +85,13 @@ int main(void)
 	
 		while (diff < timeout) {
 	
-			// DFSM
-			currentState = sm->updateCurrentState(c);	
-			currentState->execute();
+			// DFSM in main
+			// currentState = sm->updateCurrentState(c);	
+			// currentState->execute();
+
+			// DFSM in Robot class
+			robot->setCurrentState(sm->updateCurrentState(c));
+			robot->getCurrentState()->execute();
 
 			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 			diff = currentTime - lastTime;

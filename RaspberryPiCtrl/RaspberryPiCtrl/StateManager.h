@@ -1,15 +1,15 @@
 #pragma once
 #include "State.h"
-#include "Robot.h"
+#include "Handler.h"
 
 class StateManager
 {
 private: 
-	Robot* robot;
+	Handler* handler;
 	State* currentState;
 
 public: 
-	StateManager(Robot* robot);
+	StateManager(Handler* handler);
 	State* updateCurrentState(char inputChar);
 };
 
