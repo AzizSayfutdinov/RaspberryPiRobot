@@ -6,7 +6,7 @@ class StateManager
 {
 private: 
 	Handler* handler;
-	State* currentState;
+	// State* currentState;
 
 public: 
 	StateManager(Handler* handler);

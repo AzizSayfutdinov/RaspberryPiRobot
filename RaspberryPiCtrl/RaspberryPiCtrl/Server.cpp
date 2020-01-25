@@ -13,6 +13,11 @@ Server::Server() {
 
 }
 
+void Server::clearBuffer()
+{
+	memset(buffer, 0, 128);
+}
+
 void Server::receiveData() {
 
 	memset(buffer, 0, 128);

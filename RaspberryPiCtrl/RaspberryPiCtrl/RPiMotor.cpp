@@ -33,15 +33,15 @@ void RPiMotor::setPower(double power) {
 		{
 			softPwmWrite(motorPinPos, 0);
 			softPwmWrite(motorPinNeg, 0);
-			digitalWrite(motorPinPos, LOW);
-			digitalWrite(motorPinNeg, LOW);
+			// digitalWrite(motorPinPos, LOW);		// digital sets max to 0. Basically turning PIN off
+			// digitalWrite(motorPinNeg, LOW);
 		}
 	}
 	if (power > 0) {	// motor in forward mode
 		
 		for (int i = 0; i < 2; i++)
 		{
-			softPwmWrite(motorPinNeg, 0);
+			// softPwmWrite(motorPinNeg, 0);
 			softPwmWrite(motorPinPos, (int)power);
 		}
 	}
@@ -49,7 +49,7 @@ void RPiMotor::setPower(double power) {
 	{
 		for (int i = 0; i < 2; i++)
 		{
-			softPwmWrite(motorPinPos, 0);
+			// softPwmWrite(motorPinPos, 0);
 			softPwmWrite(motorPinNeg, -(int)power);		// set sign to positive
 		}
 	}

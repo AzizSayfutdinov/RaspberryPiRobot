@@ -6,9 +6,5 @@ BackwardState::BackwardState(Handler* handler) {
 
 void BackwardState::execute()
 {
-	if (active) {
-		// robot->getDrive()->moveBackward();
-		handler->drive->moveBackward();
-	}
-	
+	handler->drive->moveBackward();
 }

@@ -13,9 +13,8 @@ char InputManager::getInput()
 
 void InputManager::update()
 {
+	// Goal: reveive input data from Button and Server
 	((Server*)(subject))->receiveData();
 	this->input = ((Server*)(subject))->getBuffer()[0];		// only first character -> later: send #states charachters
+	((Server*)(subject))->clearBuffer();
 }
-
-// TODO: 
-// InputManager should return the corresponding State

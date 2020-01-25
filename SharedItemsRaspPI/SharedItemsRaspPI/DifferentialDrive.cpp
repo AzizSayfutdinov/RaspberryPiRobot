@@ -33,8 +33,8 @@ void DifferentialDrive::turnLeft() {
 }
 
 void DifferentialDrive::turnLeft(double ratio) {
-	motorLeft->setPower(ratio*maxPower);
-	motorRight->setPower(maxPower);
+	motorLeft->setPower(-ratio*maxPower);
+	motorRight->setPower(ratio*maxPower);
 }
 
 void DifferentialDrive::turnRight() {
@@ -44,8 +44,8 @@ void DifferentialDrive::turnRight() {
 
 void DifferentialDrive::turnRight(double ratio)
 {
-	motorLeft->setPower(maxPower);
-	motorRight->setPower(ratio * maxPower);
+	motorLeft->setPower(ratio*maxPower);
+	motorRight->setPower(-ratio*maxPower);
 }
 
 void DifferentialDrive::setMaxPower(double maxPower)

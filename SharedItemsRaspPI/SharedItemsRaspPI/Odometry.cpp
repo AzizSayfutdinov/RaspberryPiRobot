@@ -37,13 +37,12 @@ double Odometry::ticksToAngle(long ticks) {
 	// rotational center point at c
 	// see documentation
 
-
 	return 1;
 }
 
 
 void Odometry::alignNorth(DifferentialDrive* drive) {
-	while (compass->getDirection() < 359.0 && compass->getDirection() > 1.0) {
-		drive->turnLeft(50);
+	while (compass->getDirection() < 355.0 && compass->getDirection() > 5.0) {
+		drive->turnLeft(0.4);
 	}
 }

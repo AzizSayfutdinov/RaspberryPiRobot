@@ -1,7 +1,6 @@
 #include <wiringPi.h>
 #include <wiringPiI2C.h>
 #include <softPwm.h>
-#include <thread>
 #include <iostream>
 #include <stdio.h>
 
@@ -27,21 +26,22 @@
 
 #include "State.h"
 #include "Handler.h"
+#include "IdleState.h"
 
-
+#pragma region Defines
 #define LED 17
-
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_LEFT 75 
 #define KEY_RIGHT 77
 #define KEY_EXIT 78
-
 #define COMPASS_ID 0x60
+#pragma endregion
 
 using namespace std;
 using namespace std::chrono;
 
+#pragma region Function Headers
 // ==== Test Functions ====
 int testTCP();
 void setup();
@@ -50,55 +50,44 @@ void testDriveForwardBackwards(DifferentialDrive* drive, Odometry* odometry);
 void testTurningLeftRight(DifferentialDrive* drive, Odometry* odometry);
 void testCompass();
 void testEncoderFunc();
+void testDrive();
 
-
+#pragma endregion
 
 // ==== MAIN =====
 int main(void)
 {
 	setup();
+	// testCompass();
+	// testDrive();
 	
 	// TODO: exit with exit code from GUI: while robot->getServer()->reveiveData() != "Exit" in MAIN LOOP	
 
 	Robot* robot = new Robot();
-
-	ServerObserver* so = new ServerObserver();
-	robot->getServer()->attach(so);
-	InputManager* im = new InputManager(robot->getServer());
-	Handler* handler = new Handler(robot->getDrive(), robot->getOdometry());
-	StateManager* sm = new StateManager(handler);
-	// State* currentState;
+	int diff = 0;
+	int timeout = 100;			// in ms
 
 	while (true) {
 
-		char c = im->getInput();
+		diff = 0;
+		char c = robot->getInputManager()->getInput();
+		std::cout << "Input: \t" << c << endl;
+	
+		int lastTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();	
 
-		long timeout = 200;		// in ms
-	
-		int lastTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-	
-		int diff = 0;
-	
-		if (c == 'a') {
-			robot->getOdometry()->alignNorth(robot->getDrive());
-		}
-	
 		while (diff < timeout) {
-	
-			// DFSM in main
-			// currentState = sm->updateCurrentState(c);	
-			// currentState->execute();
 
-			// DFSM in Robot class
-			robot->setCurrentState(sm->updateCurrentState(c));
+			// DFSM in Robot class with intern sm
+			robot->setCurrentState(robot->getStateManager()->updateCurrentState(c));
 			robot->getCurrentState()->execute();
 
 			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 			diff = currentTime - lastTime;
 		}
+		
 		robot->getDrive()->stop();
-	}
 
+	}
 	return 0;
 }
 
@@ -117,12 +106,36 @@ void setup() {
 	pinMode(MOTOR_LEFT_NEG, OUTPUT);
 
 	// TODO: add exceptions if softPWM creation fails
-	int PwmSuccessful_M1pos = softPwmCreate(MOTOR_RIGHT_POS, 0, 100);
-	int PwmSuccessful_M1neg = softPwmCreate(MOTOR_RIGHT_NEG, 0, 100);
-	int PwmSuccessful_M2pos = softPwmCreate(MOTOR_LEFT_POS, 0, 100);
-	int PwmSuccessful_M2neg = softPwmCreate(MOTOR_LEFT_NEG, 0, 100);
-}
+	int PWM_OK = softPwmCreate(MOTOR_RIGHT_POS, 0, 100);
+	if (!PWM_OK) {
+		cout << "PWM for MOTOR_RIGHT_POS created successfully." << endl;;
+	}
 
+	PWM_OK = softPwmCreate(MOTOR_RIGHT_NEG, 0, 100);
+	if (!PWM_OK) {
+		cout << "PWM for MOTOR_RIGHT_NEG created successfully. " << endl;;
+	}
+
+	PWM_OK = softPwmCreate(MOTOR_LEFT_POS, 0, 100);
+	if (!PWM_OK) {
+		cout << "PWM for MOTOR_LEFT_POS created successfully. " << endl;;
+	}
+
+	PWM_OK = softPwmCreate(MOTOR_LEFT_NEG, 0, 100);
+	if (!PWM_OK) {
+		cout << "PWM for MOTOR_LEFT_NEG created successfully. " << endl;;
+	}
+
+	//digitalWrite(MOTOR_RIGHT_POS, HIGH);
+	//digitalWrite(MOTOR_RIGHT_NEG, LOW);
+	//softPwmWrite(MOTOR_RIGHT_POS, 0);
+	//softPwmWrite(MOTOR_RIGHT_NEG, 0);
+
+	//digitalWrite(MOTOR_LEFT_POS, HIGH);
+	//digitalWrite(MOTOR_LEFT_NEG, LOW);
+	//softPwmWrite(MOTOR_LEFT_POS, 0);
+	//softPwmWrite(MOTOR_LEFT_NEG, 0);
+}
 
 int testTCP() {
 
@@ -172,7 +185,7 @@ int testTCP() {
 
 
 	// Greet Client!
-	cout << "Initiate Greeting of client! Code Red!";
+	std::cout << "Initiate Greeting of client! Code Red!";
 	char greeting[] = "Hi Client! What's up!";
 	send(clientSocket, greeting, sizeof(greeting) + 1, 0);
 
@@ -183,11 +196,11 @@ int testTCP() {
 	int result = getnameinfo((sockaddr*)&client, sizeof(client), host, NI_MAXHOST, svc, NI_MAXSERV, 0);
 
 	if (result) {
-		cout << host << " connected on " << svc << endl;
+		std::cout << host << " connected on " << svc << endl;
 	}
 	else {
 		inet_ntop(AF_INET, &client.sin_addr, host, NI_MAXHOST);				// opposite of inet_pton, numeric array to string conversion
-		cout << host << " connected on " << ntohs(client.sin_port) << endl;
+		std::cout << host << " connected on " << ntohs(client.sin_port) << endl;
 	}
 
 
@@ -204,12 +217,12 @@ int testTCP() {
 		}
 
 		if (bytesRevc == 0) {
-			cout << "The client disconnected" << endl;
+			std::cout << "The client disconnected" << endl;
 			break;
 		}
 
 		// Display message
-		cout << "Received: " << string(buffer, 0, bytesRevc) << endl;
+		std::cout << "Received: " << string(buffer, 0, bytesRevc) << endl;
 
 		// echo back out: Resend message
 		send(clientSocket, buffer, bytesRevc + 1, 0);
@@ -244,7 +257,7 @@ void testTicks(RPiMotor* motor, RPiEncoder* encoder) {
 		// }
 
 		currentTickCount = encoder->getTicks();
-		cout << "Ticks: " << currentTickCount << endl;
+		std::cout << "Ticks: " << currentTickCount << endl;
 		this_thread::sleep_for(chrono::milliseconds(10));
 
 	}
@@ -259,7 +272,7 @@ void testDriveForwardBackwards(DifferentialDrive* drive, Odometry* odometry) {
 	this_thread::sleep_for(chrono::milliseconds(1000));
 	drive->stop();
 	dist = odometry->getDistance();
-	cout << "Distance traveled: " << dist << "mm " << endl;
+	std::cout << "Distance traveled: " << dist << "mm " << endl;
 
 	delay(1000);
 
@@ -268,7 +281,7 @@ void testDriveForwardBackwards(DifferentialDrive* drive, Odometry* odometry) {
 	this_thread::sleep_for(chrono::milliseconds(1000));
 	drive->stop();
 	dist = odometry->getDistance();
-	cout << "Distance traveled: " << dist << "mm " << endl;
+	std::cout << "Distance traveled: " << dist << "mm " << endl;
 	// RPiMotor::turnOffAll();
 }
 
@@ -293,7 +306,7 @@ void testCompass() {
 
 	while (true) {
 
-		cout << "Value 8 bit: " << compass->getDirection8bit() << "\t Value 16 bit: " << compass->getDirection() << endl;
+		std::cout << "Value 8 bit: " << compass->getDirection8bit() << "\t Value 16 bit: " << compass->getDirection() << endl;
 		this_thread::sleep_for(chrono::milliseconds(250));
 	}
 }
@@ -303,7 +316,46 @@ void testEncoderFunc() {
 	 while (true) {
  		int x = digitalRead(ENCODER_RIGHT);
  		int y = digitalRead(ENCODER_LEFT);
- 		cout << "Value right: " << x << "\tValue left: " << y << endl;
+ 		std::cout << "Value right: " << x << "\tValue left: " << y << endl;
  		this_thread::sleep_for(chrono::milliseconds(100));
 	 }
+}
+
+void testDrive() {
+
+	// drive forward
+	int start = 0;
+	softPwmWrite(MOTOR_RIGHT_POS, 50);
+	softPwmWrite(MOTOR_LEFT_POS, 50);
+	this_thread::sleep_for(chrono::milliseconds(2000));		// motors only move, if the system is running (while thread is running)
+	// pause
+	int a = 0;
+	int b = a + 1;
+	softPwmWrite(MOTOR_RIGHT_POS, 0);
+	softPwmWrite(MOTOR_LEFT_POS, 0);
+	this_thread::sleep_for(chrono::milliseconds(2000));		
+
+	// turn left
+	softPwmWrite(MOTOR_RIGHT_POS, 50);
+	softPwmWrite(MOTOR_LEFT_NEG, 50);
+	this_thread::sleep_for(chrono::milliseconds(2000));
+
+	//// drive forward: digital
+	//digitalWrite(MOTOR_RIGHT_POS, HIGH);
+	//digitalWrite(MOTOR_RIGHT_NEG, HIGH);
+	//digitalWrite(MOTOR_LEFT_POS, HIGH);
+	//digitalWrite(MOTOR_LEFT_NEG, HIGH);
+	//this_thread::sleep_for(chrono::milliseconds(2000));
+
+	//// pause
+	//digitalWrite(MOTOR_RIGHT_NEG, LOW);
+	//digitalWrite(MOTOR_RIGHT_POS, HIGH);
+	//digitalWrite(MOTOR_LEFT_NEG, LOW);
+	//digitalWrite(MOTOR_LEFT_POS, HIGH);
+
+	this_thread::sleep_for(chrono::milliseconds(2000));
+	int stop = 0;
+
+
+
 }

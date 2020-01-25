@@ -70,6 +70,7 @@
     </RemotePostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AlignNorthState.cpp" />
     <ClCompile Include="BackwardState.cpp" />
     <ClCompile Include="ForwardState.cpp" />
     <ClCompile Include="Handler.cpp" />
@@ -92,6 +93,7 @@
     <ClCompile Include="ToRightState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AlignNorthState.h" />
     <ClInclude Include="BackwardState.h" />
     <ClInclude Include="ForwardState.h" />
     <ClInclude Include="Handler.h" />

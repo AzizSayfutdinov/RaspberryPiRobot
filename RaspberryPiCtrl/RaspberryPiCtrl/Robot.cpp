@@ -12,6 +12,12 @@ Robot::Robot()
 	Robot::odometry = new Odometry(encoderLeft, encoderRight, compass);		// TODO: use singleton class
 	
 	Robot::server = new Server();
+	Robot::serverObserver = new ServerObserver();
+	server->attach(serverObserver);
+
+	handler = new Handler(drive, odometry);
+	sm = new StateManager(handler);
+	im = new InputManager(server);
 }
 
 Server* Robot::getServer()
@@ -37,6 +43,16 @@ State* Robot::getCurrentState()
 void Robot::setCurrentState(State* state)
 {
 	currentState = state;
+}
+
+StateManager* Robot::getStateManager()
+{
+	return sm;
+}
+
+InputManager* Robot::getInputManager()
+{
+	return im;
 }
 
 

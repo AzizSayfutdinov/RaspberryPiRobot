@@ -33,6 +33,7 @@ public:
 	char* getBuffer();
 	void receiveData();
 	Server();
+	void clearBuffer();
 
 };
 
