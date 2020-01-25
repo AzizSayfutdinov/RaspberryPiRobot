@@ -37,11 +37,6 @@
 #define COMPASS_ID 0x60
 #pragma endregion
 
-#pragma region TODOs
-	// clean up TCP implementation
-	// write git hub documentation
-#pragma endregion
-
 using namespace std;
 using namespace std::chrono;
 
@@ -101,12 +96,12 @@ int main(void)
 
 			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 			diff = currentTime - lastTime;
-		}	
-		robot->getDrive()->stop();		
+		}
+		
+		robot->getDrive()->stop();
+		
+
 	}
-
-	delete robot;
-
 	return 0;
 }
 
