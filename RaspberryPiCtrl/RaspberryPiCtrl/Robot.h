@@ -13,11 +13,12 @@
 
 class Robot
 {
+
+	static Robot* instance;
 private: 
 	RPiMotor* motorRight;  
 	RPiMotor* motorLeft; 
 	DifferentialDrive* drive;
-
 	RPiEncoder* encoderRight;
 	RPiEncoder* encoderLeft; 
 	Odometry* odometry;  
@@ -29,9 +30,11 @@ private:
 	StateManager* sm;
 	InputManager* im;
 
+	// singleton implementation
+	Robot();	// constructor private to prevent contructor calls
+
 
 public: 
-	Robot();
 	Server* getServer();
 	DifferentialDrive* getDrive();
 	Odometry* getOdometry();
@@ -39,6 +42,9 @@ public:
 	void setCurrentState(State* state);
 	StateManager* getStateManager();
 	InputManager* getInputManager();
+
+	// singleton implementation
+	static Robot* getInstance();
 
 };
 

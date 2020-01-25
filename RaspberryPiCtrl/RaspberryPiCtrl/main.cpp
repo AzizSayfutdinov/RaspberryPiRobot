@@ -54,6 +54,9 @@ void testDrive();
 
 #pragma endregion
 
+// singleton reference
+Robot* Robot::instance = NULL;
+
 // ==== MAIN =====
 int main(void)
 {
@@ -63,7 +66,7 @@ int main(void)
 	
 	// TODO: exit with exit code from GUI: while robot->getServer()->reveiveData() != "Exit" in MAIN LOOP	
 
-	Robot* robot = new Robot();
+	Robot* robot = Robot::getInstance();
 	int diff = 0;
 	int timeout = 100;			// in ms
 

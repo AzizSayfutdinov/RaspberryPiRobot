@@ -20,6 +20,15 @@ Robot::Robot()
 	im = new InputManager(server);
 }
 
+// singleton implementation
+Robot* Robot::getInstance()
+{
+	if (instance == NULL) {
+		instance = new Robot();
+		return instance;
+	}
+}
+
 Server* Robot::getServer()
 {
 	return Robot::server;
@@ -54,6 +63,8 @@ InputManager* Robot::getInputManager()
 {
 	return im;
 }
+
+
 
 
 
