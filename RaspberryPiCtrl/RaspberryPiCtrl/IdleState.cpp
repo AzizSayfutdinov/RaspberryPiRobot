@@ -4,7 +4,6 @@ IdleState::IdleState(Robot* robot) {
 	this->robot = robot;
 }
 
-void* IdleState::execute(void*) {
+void IdleState::execute() {
 	robot->getDrive()->stop();
-	return 0;
 }

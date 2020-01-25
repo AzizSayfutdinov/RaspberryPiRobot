@@ -5,6 +5,6 @@ class IdleState :
 {
 public: 
 	IdleState(Robot* robot);
-	void* execute(void*);
+	void execute();
 };
 

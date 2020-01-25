@@ -4,7 +4,7 @@ BackwardState::BackwardState(Robot* robot) {
 	this->robot = robot;
 }
 
-void* BackwardState::execute(void*)
+void BackwardState::execute()
 {
 	if (active) {
 		robot->getDrive()->moveBackward();

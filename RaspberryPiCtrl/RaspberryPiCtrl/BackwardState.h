@@ -5,6 +5,6 @@ class BackwardState :
 {
 public:
 	BackwardState(Robot* robot);
-	void* execute(void*);
+	void execute();
 };
 

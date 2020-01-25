@@ -84,16 +84,8 @@ int main(void)
 		while (diff < timeout) {
 	
 			// DFSM
-			currentState = sm->updateCurrentState(c);	// update returns type State*. I think I need typecasting
+			currentState = sm->updateCurrentState(c);	
 			currentState->execute();
-
-			// NFSM
-			//currentStateSet = sm->getStates(string s);
-			//for each (State* s in currentStateSet)
-			//{
-			//		s->setActive() = true;
-			//}
-			// define for each state a pthread
 
 			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 			diff = currentTime - lastTime;

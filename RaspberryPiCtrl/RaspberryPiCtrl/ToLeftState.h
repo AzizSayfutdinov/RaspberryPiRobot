@@ -5,6 +5,6 @@ class ToLeftState :
 {
 public:
 	ToLeftState(Robot* robot);
-	void* execute(void*);
+	void execute();
 };
 

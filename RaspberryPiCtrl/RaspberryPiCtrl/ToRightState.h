@@ -5,6 +5,6 @@ class ToRightState :
 {
 public:
 	ToRightState(Robot* robot);
-	void* execute(void*);
+	void execute();
 };
 

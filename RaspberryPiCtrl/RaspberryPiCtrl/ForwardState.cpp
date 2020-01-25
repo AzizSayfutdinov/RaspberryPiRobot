@@ -10,8 +10,7 @@ ForwardState::ForwardState(Robot* robot) {
 	this->robot = robot;
 }
 
-void* ForwardState::execute(void*) {
+void ForwardState::execute() {
 
 	robot->getDrive()->moveForward();
-	return 0;
 }
