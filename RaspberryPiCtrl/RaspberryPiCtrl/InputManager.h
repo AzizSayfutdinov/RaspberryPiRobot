@@ -1,17 +1,14 @@
 #pragma once
-#include "Subject.h"
 #include "Observer.h"
-#include "Server.h"
-#include "ServerObserver.h"
+#include "Server.h"	// versuche das loszuwerden
 
 class InputManager: public Observer
 {
 private: 
 	char input;
-	Subject* subject;
 
 public: 
-	InputManager(Subject* observerSubject);
+	InputManager();
 	char getInput();
 	void update();
 };

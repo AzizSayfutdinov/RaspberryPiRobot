@@ -12,12 +12,12 @@ Robot::Robot()
 	Robot::odometry = new Odometry(encoderLeft, encoderRight, compass);		// TODO: use singleton class
 	
 	Robot::server = new Server();
-	Robot::serverObserver = new ServerObserver();
-	server->attach(serverObserver);
+	im = new InputManager(server);
+	server->attach(im);		// attaching inputManager as observer
 
 	handler = new Handler(drive, odometry);
 	sm = new StateManager(handler);
-	im = new InputManager(server);
+
 }
 
 // singleton implementation

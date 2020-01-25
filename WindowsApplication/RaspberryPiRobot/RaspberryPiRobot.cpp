@@ -49,8 +49,6 @@ void test_drive(DifferentialDrive* drive, Odometry* odometry) {
 		this_thread::sleep_for(chrono::milliseconds(timeSteps));
 		distance = odometry->getDistance();
 		cout << distance << " mm" << endl;
-
-
 	}
 }
 

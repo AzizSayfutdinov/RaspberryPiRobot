@@ -43,6 +43,8 @@ int Server::setup()
 	// 	return -1;
 	// }
 
+	// TODO: clear
+
 	// create a socket
 	listening = socket(AF_INET, SOCK_STREAM, 0);		// INET = IPv4; listening is a socket descriptor
 	if (listening == -1) {

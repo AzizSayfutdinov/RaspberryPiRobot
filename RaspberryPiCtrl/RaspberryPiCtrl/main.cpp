@@ -26,16 +26,20 @@
 
 #include "State.h"
 #include "Handler.h"
-#include "IdleState.h"
+#include "LedOnOffState.h"
 
 #pragma region Defines
-#define LED 17
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_LEFT 75 
 #define KEY_RIGHT 77
 #define KEY_EXIT 78
 #define COMPASS_ID 0x60
+#pragma endregion
+
+#pragma region TODOs
+	// clean up TCP implementation
+	// write git hub documentation
 #pragma endregion
 
 using namespace std;
@@ -57,40 +61,52 @@ void testDrive();
 // singleton reference
 Robot* Robot::instance = NULL;
 
+// static types
+bool LedOnOffState::currentState = false;
+
 // ==== MAIN =====
 int main(void)
 {
 	setup();
 	// testCompass();
-	// testDrive();
-	
 	// TODO: exit with exit code from GUI: while robot->getServer()->reveiveData() != "Exit" in MAIN LOOP	
 
 	Robot* robot = Robot::getInstance();
+
 	int diff = 0;
-	int timeout = 100;			// in ms
+	int timeout = 75;			// in ms
 
 	while (true) {
 
 		diff = 0;
+		bool once = true;
 		char c = robot->getInputManager()->getInput();
 		std::cout << "Input: \t" << c << endl;
 	
 		int lastTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();	
 
-		while (diff < timeout) {
+		robot->setCurrentState(robot->getStateManager()->updateCurrentState(c));
 
-			// DFSM in Robot class with intern sm
-			robot->setCurrentState(robot->getStateManager()->updateCurrentState(c));
-			robot->getCurrentState()->execute();
+		while (diff < timeout) {
+			if (robot->getCurrentState()->isPeriodic()) {		// LED state should execute only once within timeout
+				if (once) {
+					robot->getCurrentState()->execute();
+					once = false;
+				}
+			}
+			else
+			{
+				robot->getCurrentState()->execute();
+			}
 
 			int currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 			diff = currentTime - lastTime;
-		}
-		
-		robot->getDrive()->stop();
-
+		}	
+		robot->getDrive()->stop();		
 	}
+
+	delete robot;
+
 	return 0;
 }
 

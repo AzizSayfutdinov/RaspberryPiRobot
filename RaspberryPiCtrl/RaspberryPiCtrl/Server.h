@@ -7,10 +7,11 @@
 #include <string.h>
 #include <string>
 #include "Subject.h"
+#include "IInput.h"
 
 using namespace std;
 
-class Server: public Subject
+class Server: public Subject, public IInput
 {
 
 private: 
@@ -30,10 +31,10 @@ private:
 
 
 public:
-	char* getBuffer();
-	void receiveData();
 	Server();
-	void clearBuffer();
+	//char* getBuffer();
+	//void receiveData();
+	//void clearBuffer();
 
 };
 

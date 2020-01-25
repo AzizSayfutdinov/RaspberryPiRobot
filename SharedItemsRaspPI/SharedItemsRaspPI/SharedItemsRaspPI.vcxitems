@@ -27,5 +27,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Encoder.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Motor.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Odometry.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RobotExceptions.h" />
   </ItemGroup>
 </Project>

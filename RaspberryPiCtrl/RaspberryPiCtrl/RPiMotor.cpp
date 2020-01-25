@@ -1,6 +1,8 @@
 #include "RPiMotor.h"
 #include <wiringPi.h>
 #include <softPwm.h>
+#include <iostream>
+#include "RobotExceptions.h"
 
 RPiMotor::RPiMotor(int motorPinPos, int motorPinNeg) {
 	this->motorPinNeg = motorPinNeg;
@@ -19,12 +21,13 @@ void RPiMotor::setPower(double power) {
 	// TODO: Include the encoder as a property to the motor and check
 	// whether the motor actually works
 
+	int a = 0;
 	// temporary fix: set outputs twice
 
 	if (power < -100 && power > 100) {
-		// throw exception
+		throw OutOfBoundariesException();
 	}
-
+	
 	this->power = power;
 
 	if ((int)power == 0){	

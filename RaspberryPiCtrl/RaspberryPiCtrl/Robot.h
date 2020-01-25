@@ -24,7 +24,6 @@ private:
 	Odometry* odometry;  
 	RPiCompassI2C* compass;
 	Server* server;
-	ServerObserver* serverObserver;
 	State* currentState;
 	Handler* handler;
 	StateManager* sm;

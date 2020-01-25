@@ -1,6 +1,6 @@
 #include "DifferentialDrive.h"
 #include <iostream>
-
+#include "RobotExceptions.h"
 
 DifferentialDrive::DifferentialDrive(Motor* motorLeft, Motor* motorRight) {
 	this->motorLeft = motorLeft;
@@ -9,8 +9,16 @@ DifferentialDrive::DifferentialDrive(Motor* motorLeft, Motor* motorRight) {
 
 void DifferentialDrive::moveForward() {
 
-	motorLeft->setPower(maxPower);
-	motorRight->setPower(maxPower);
+	try
+	{
+		motorLeft->setPower(maxPower);
+		motorRight->setPower(maxPower);
+	}
+	catch (OutOfBoundariesException& e)
+	{
+		std::cerr << e.what() << endl;		// not functional yet ... 
+	}
+
 }
 
 void DifferentialDrive::moveBackward()

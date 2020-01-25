@@ -12,6 +12,5 @@ ForwardState::ForwardState(Handler* handler) {
 
 void ForwardState::execute() {
 
-	//robot->getDrive()->moveForward();
 	handler->drive->moveForward();
 }

@@ -17,3 +17,8 @@ void Subject::notify()
 	}
 }
 
+vector<Observer*> Subject::getObserverList()
+{
+	return observerList;
+}
+
