@@ -5,7 +5,6 @@
 #include "RPiCompassI2C.h"
 #include "Odometry.h"
 #include "Server.h"
-#include "ServerObserver.h"
 #include "State.h"
 #include "StateManager.h"
 #include "Handler.h"

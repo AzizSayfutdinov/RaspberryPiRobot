@@ -15,6 +15,7 @@ Robot::Robot()
 	im = new InputManager(server);
 	server->attach(im);		// attaching inputManager as observer
 
+
 	handler = new Handler(drive, odometry);
 	sm = new StateManager(handler);
 

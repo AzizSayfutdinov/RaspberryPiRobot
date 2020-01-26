@@ -61,18 +61,9 @@ int Button::buttonXpressed()
 	return buttonPressed;
 }
 
-void Button::notify()
-{
-	for (int i = 0; i < getObserverList().size(); i++) {
-		getObserverList().at(i)->update();
-	}
-}
 
 char Button::getInput()
 {
-	return '1';
+	return buttonXpressed();
 }
 
-void IInput::receiveData() {
-
-}

@@ -8,9 +8,6 @@
     <ClCompile Include="RPiCompassI2C.cpp">
       <Filter>Robot\Compass</Filter>
     </ClCompile>
-    <ClCompile Include="RPiCompassEncoder.cpp">
-      <Filter>Robot\Compass</Filter>
-    </ClCompile>
     <ClCompile Include="RPiEncoder.cpp">
       <Filter>Robot\Encoder</Filter>
     </ClCompile>
@@ -28,9 +25,6 @@
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="ServerObserver.cpp">
-      <Filter>DesignPattern\Observer</Filter>
     </ClCompile>
     <ClCompile Include="State.cpp">
       <Filter>DesignPattern\State</Filter>
@@ -53,9 +47,6 @@
     <ClCompile Include="StateManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
-    <ClCompile Include="Launcher.cpp">
-      <Filter>Launcher</Filter>
-    </ClCompile>
     <ClCompile Include="Handler.cpp">
       <Filter>HelperClasses</Filter>
     </ClCompile>
@@ -68,15 +59,13 @@
     <ClCompile Include="LedOnOffState.cpp">
       <Filter>DesignPattern\State\RobotStates</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RPiMotor.h">
       <Filter>Robot\Motor</Filter>
     </ClInclude>
     <ClInclude Include="RPiCompassI2C.h">
-      <Filter>Robot\Compass</Filter>
-    </ClInclude>
-    <ClInclude Include="RPiCompassEncoder.h">
       <Filter>Robot\Compass</Filter>
     </ClInclude>
     <ClInclude Include="RPiEncoder.h">
@@ -96,9 +85,6 @@
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="ServerObserver.h">
-      <Filter>DesignPattern\Observer</Filter>
     </ClInclude>
     <ClInclude Include="State.h">
       <Filter>DesignPattern\State</Filter>
@@ -121,9 +107,6 @@
     <ClInclude Include="StateManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Launcher.h">
-      <Filter>Launcher</Filter>
-    </ClInclude>
     <ClInclude Include="Handler.h">
       <Filter>HelperClasses</Filter>
     </ClInclude>
@@ -136,6 +119,7 @@
     <ClInclude Include="LedOnOffState.h">
       <Filter>DesignPattern\State\RobotStates</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Server">
@@ -158,9 +142,6 @@
     </Filter>
     <Filter Include="Managers">
       <UniqueIdentifier>{666e0f79-9d8b-4095-b00b-bb449dde2218}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Launcher">
-      <UniqueIdentifier>{e72df4f3-6141-4c4a-825c-d38707b1ab1f}</UniqueIdentifier>
     </Filter>
     <Filter Include="HelperClasses">
       <UniqueIdentifier>{cb5a62ad-a952-4adc-9cef-fb5ed4a3156c}</UniqueIdentifier>

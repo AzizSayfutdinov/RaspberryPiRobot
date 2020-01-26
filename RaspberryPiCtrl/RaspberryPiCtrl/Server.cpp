@@ -21,7 +21,7 @@ void Server::clearBuffer()
 void Server::receiveData() {
 
 	memset(buffer, 0, 128);
-	int bytesRevc = recv(clientSocket, buffer, 128, 0);
+	recv(clientSocket, buffer, 128, 0);
 	notify();	// notify observer
 
 }

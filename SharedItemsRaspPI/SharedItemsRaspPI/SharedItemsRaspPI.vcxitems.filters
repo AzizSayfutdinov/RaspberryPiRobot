@@ -13,5 +13,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Motor.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Odometry.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Compass.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RobotExceptions.h" />
   </ItemGroup>
 </Project>

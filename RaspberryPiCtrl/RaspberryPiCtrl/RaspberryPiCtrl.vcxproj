@@ -72,22 +72,20 @@
   <ItemGroup>
     <ClCompile Include="AlignNorthState.cpp" />
     <ClCompile Include="BackwardState.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="DriveRectangleState.cpp" />
     <ClCompile Include="ForwardState.cpp" />
     <ClCompile Include="Handler.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Launcher.cpp" />
     <ClCompile Include="LedOnOffState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Robot.cpp" />
-    <ClCompile Include="RPiCompassEncoder.cpp" />
     <ClCompile Include="RPiCompassI2C.cpp" />
     <ClCompile Include="RPiEncoder.cpp" />
     <ClCompile Include="RPiMotor.cpp" />
     <ClCompile Include="Server.cpp" />
-    <ClCompile Include="ServerObserver.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Subject.cpp" />
@@ -97,21 +95,19 @@
   <ItemGroup>
     <ClInclude Include="AlignNorthState.h" />
     <ClInclude Include="BackwardState.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="DriveRectangleState.h" />
     <ClInclude Include="ForwardState.h" />
     <ClInclude Include="Handler.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Launcher.h" />
     <ClInclude Include="LedOnOffState.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Robot.h" />
-    <ClInclude Include="RPiCompassEncoder.h" />
     <ClInclude Include="RPiCompassI2C.h" />
     <ClInclude Include="RPiEncoder.h" />
     <ClInclude Include="RPiMotor.h" />
     <ClInclude Include="Server.h" />
-    <ClInclude Include="ServerObserver.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="Subject.h" />
