@@ -65,3 +65,10 @@ double DifferentialDrive::getMaxPower()
 {
 	return maxPower;
 }
+
+DifferentialDrive* DifferentialDrive::getInstance(Motor* motorLeft, Motor* motorRight)
+{
+	if (instance == NULL) {
+		return new DifferentialDrive(motorLeft, motorRight);
+	}
+}

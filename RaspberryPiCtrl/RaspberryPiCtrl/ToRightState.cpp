@@ -6,5 +6,5 @@ ToRightState::ToRightState(Handler* handler) {
 
 void ToRightState::execute()
 {
-	handler->drive->turnRight(0.4);
+	handler->drive->turnRight(0.8);
 }

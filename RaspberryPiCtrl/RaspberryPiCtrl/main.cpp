@@ -53,8 +53,9 @@ void testDrive();
 
 #pragma endregion
 
-// singleton reference
+// singleton references
 Robot* Robot::instance = NULL;
+DifferentialDrive* DifferentialDrive::instance = NULL;
 
 // static types
 bool LedOnOffState::currentState = false;
@@ -106,7 +107,7 @@ int main(void)
 }
 
 
-// TEST FUNCTION IMPLEMENTATIONS
+// FUNCTION IMPLEMENTATIONS
 
 void setup() {
 	wiringPiSetupGpio();
@@ -139,16 +140,6 @@ void setup() {
 	if (!PWM_OK) {
 		cout << "PWM for MOTOR_LEFT_NEG created successfully. " << endl;;
 	}
-
-	//digitalWrite(MOTOR_RIGHT_POS, HIGH);
-	//digitalWrite(MOTOR_RIGHT_NEG, LOW);
-	//softPwmWrite(MOTOR_RIGHT_POS, 0);
-	//softPwmWrite(MOTOR_RIGHT_NEG, 0);
-
-	//digitalWrite(MOTOR_LEFT_POS, HIGH);
-	//digitalWrite(MOTOR_LEFT_NEG, LOW);
-	//softPwmWrite(MOTOR_LEFT_POS, 0);
-	//softPwmWrite(MOTOR_LEFT_NEG, 0);
 }
 
 int testTCP() {

@@ -7,5 +7,5 @@ ToLeftState::ToLeftState(Handler* handler) {
 void ToLeftState::execute()
 {
 	// robot->getDrive()->turnLeft(0);
-	handler->drive->turnLeft(0.4);
+	handler->drive->turnLeft(0.8);
 }
