@@ -9,10 +9,10 @@
 #include "StateManager.h"
 #include "Handler.h"
 #include "InputManager.h"
+#include "Button.h"
 
 class Robot
 {
-
 	static Robot* instance;
 private: 
 	RPiMotor* motorRight;  
@@ -21,16 +21,16 @@ private:
 	RPiEncoder* encoderRight;
 	RPiEncoder* encoderLeft; 
 	Odometry* odometry;  
-	RPiCompassI2C* compass;
+	RPiCompassI2C* compass; 
 	Server* server;
 	State* currentState;
 	Handler* handler;
 	StateManager* sm;
 	InputManager* im;
+	Button* button_nr1;
 
 	// singleton implementation
 	Robot();	// constructor private to prevent contructor calls
-
 
 public: 
 	Server* getServer();

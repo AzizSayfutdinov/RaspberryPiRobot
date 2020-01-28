@@ -13,4 +13,8 @@ ForwardState::ForwardState(Handler* handler) {
 void ForwardState::execute() {
 
 	handler->drive->moveForward();
+	string s = "\r\nState: Mocing Forward \r\n";
+	char cstr[s.size() + 1];
+	strcpy(cstr, s.c_str());
+	handler->server->sendData(cstr);
 }

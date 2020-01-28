@@ -26,7 +26,6 @@ double Odometry::getHeading() {
 }
 
 void Odometry::reset() {
-	// reset?
 	ticksLeft = 0;
 	ticksRight = 0;
 
@@ -35,14 +34,14 @@ void Odometry::reset() {
 double Odometry::ticksToAngle(long ticks) {
 	// exactly the x I calculated: rotational distance of one wheel with the 
 	// rotational center point at c
-	// see documentation
+	// see documentation: TODO
 
 	return 1;
 }
 
 
 void Odometry::alignNorth(DifferentialDrive* drive) {
-	while (compass->getDirection() < 355.0 && compass->getDirection() > 5.0) {
-		drive->turnLeft(0.4);
+	while (compass->getDirection() < 359.0 && compass->getDirection() > 1.0) {
+		drive->turnLeft(0.8);
 	}
 }

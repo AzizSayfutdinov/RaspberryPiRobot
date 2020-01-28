@@ -77,7 +77,9 @@
     <ClCompile Include="ForwardState.cpp" />
     <ClCompile Include="Handler.cpp" />
     <ClCompile Include="IdleState.cpp" />
+    <ClCompile Include="IInput.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Laucher.cpp" />
     <ClCompile Include="LedOnOffState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Observer.cpp" />
@@ -89,6 +91,7 @@
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Subject.cpp" />
+    <ClCompile Include="MyFunctions.cpp" />
     <ClCompile Include="ToLeftState.cpp" />
     <ClCompile Include="ToRightState.cpp" />
   </ItemGroup>
@@ -100,7 +103,9 @@
     <ClInclude Include="ForwardState.h" />
     <ClInclude Include="Handler.h" />
     <ClInclude Include="IdleState.h" />
+    <ClInclude Include="IInput.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Laucher.h" />
     <ClInclude Include="LedOnOffState.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Robot.h" />
@@ -111,6 +116,7 @@
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="Subject.h" />
+    <ClInclude Include="MyFunctions.h" />
     <ClInclude Include="ToLeftState.h" />
     <ClInclude Include="ToRightState.h" />
   </ItemGroup>

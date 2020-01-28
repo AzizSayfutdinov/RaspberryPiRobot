@@ -27,22 +27,22 @@
       <Filter>Managers</Filter>
     </ClCompile>
     <ClCompile Include="State.cpp">
-      <Filter>DesignPattern\State</Filter>
+      <Filter>DesignPattern\States</Filter>
     </ClCompile>
     <ClCompile Include="IdleState.cpp">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClCompile>
     <ClCompile Include="ForwardState.cpp">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClCompile>
     <ClCompile Include="ToRightState.cpp">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClCompile>
     <ClCompile Include="ToLeftState.cpp">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClCompile>
     <ClCompile Include="BackwardState.cpp">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClCompile>
     <ClCompile Include="StateManager.cpp">
       <Filter>Managers</Filter>
@@ -51,15 +51,26 @@
       <Filter>HelperClasses</Filter>
     </ClCompile>
     <ClCompile Include="AlignNorthState.cpp">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClCompile>
     <ClCompile Include="DriveRectangleState.cpp">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClCompile>
     <ClCompile Include="LedOnOffState.cpp">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Button.cpp">
+      <Filter>Robot\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="IInput.cpp">
+      <Filter>Robot\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="MyFunctions.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Laucher.cpp">
+      <Filter>Launcher</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RPiMotor.h">
@@ -87,22 +98,22 @@
       <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="State.h">
-      <Filter>DesignPattern\State</Filter>
+      <Filter>DesignPattern\States</Filter>
     </ClInclude>
     <ClInclude Include="IdleState.h">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClInclude>
     <ClInclude Include="ForwardState.h">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClInclude>
     <ClInclude Include="ToRightState.h">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClInclude>
     <ClInclude Include="ToLeftState.h">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClInclude>
     <ClInclude Include="BackwardState.h">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClInclude>
     <ClInclude Include="StateManager.h">
       <Filter>Managers</Filter>
@@ -111,15 +122,26 @@
       <Filter>HelperClasses</Filter>
     </ClInclude>
     <ClInclude Include="AlignNorthState.h">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClInclude>
     <ClInclude Include="DriveRectangleState.h">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClInclude>
     <ClInclude Include="LedOnOffState.h">
-      <Filter>DesignPattern\State\RobotStates</Filter>
+      <Filter>DesignPattern\States\RobotStates</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h" />
+    <ClInclude Include="Button.h">
+      <Filter>Robot\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="IInput.h">
+      <Filter>Robot\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="MyFunctions.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="Laucher.h">
+      <Filter>Launcher</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Server">
@@ -133,12 +155,6 @@
     </Filter>
     <Filter Include="DesignPattern\Observer">
       <UniqueIdentifier>{fe25cf68-47c9-4969-8561-9de88ca5fe4b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DesignPattern\State">
-      <UniqueIdentifier>{8a815cb7-656a-44fd-b680-2b35d3883bae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DesignPattern\State\RobotStates">
-      <UniqueIdentifier>{d051ba02-605b-46a8-87a9-cb32ad036829}</UniqueIdentifier>
     </Filter>
     <Filter Include="Managers">
       <UniqueIdentifier>{666e0f79-9d8b-4095-b00b-bb449dde2218}</UniqueIdentifier>
@@ -154,6 +170,18 @@
     </Filter>
     <Filter Include="Robot\Compass">
       <UniqueIdentifier>{c1ce837b-0f32-4a3a-a18c-81f2f59d5cdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\Button">
+      <UniqueIdentifier>{6c3418e6-2903-4398-ad5b-16e79518167d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Launcher">
+      <UniqueIdentifier>{bd33aa06-7d0a-40bd-978b-eab4694e57fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DesignPattern\States">
+      <UniqueIdentifier>{8a815cb7-656a-44fd-b680-2b35d3883bae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DesignPattern\States\RobotStates">
+      <UniqueIdentifier>{d051ba02-605b-46a8-87a9-cb32ad036829}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

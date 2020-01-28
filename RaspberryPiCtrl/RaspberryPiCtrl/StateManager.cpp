@@ -42,6 +42,7 @@ State* StateManager::updateCurrentState(char inputChar)
 		return new DriveRectangleState(handler);
 		break;
 	case 'o':
+	case '1':
 		return new LedOnOffState(handler);
 		break;
 	default:

@@ -11,7 +11,7 @@ void DriveRectangleState::execute()
 	// scalable for different polygon shapes
 	int numberOfEdges = 4;
 	double cornerAngle = 360 / numberOfEdges;	// in deg
-	int edgeSize = 1000;	// in mm
+	int edgeSize = 300;	// in mm
 
 	for (int i = 0; i < numberOfEdges; i++) {
 		// set size of rectangle edge
@@ -27,15 +27,17 @@ void DriveRectangleState::execute()
 		// turning by 90°
 		// turning right increases angle
 		double lastAngle = handler->odometry->getHeading();
-		if (lastAngle > 180) {
-			lastAngle = lastAngle - 360;
-		}
 		double turnedAngle = 0;
 
 		while (turnedAngle < cornerAngle) {
 			handler->drive->turnRight();
 			double currentAngle = handler->odometry->getHeading();
 			turnedAngle = currentAngle - lastAngle;
+			if (turnedAngle < 0) {
+				turnedAngle = turnedAngle + 360;
+			}
 		}
+		handler->drive->stop();
+
 	}
 }

@@ -9,7 +9,17 @@ InputManager::InputManager(Subject* subject)
 
 char InputManager::getInput()
 {
-	((Server*)(subject))->receiveData();
+	((Server*)(subject))->receiveData();	// stuck this place
+
+	for (int i = 0; i < inputObjects.size(); i++) {
+		char temp = inputObjects.at(i)->getInput();
+		if (temp != '\0') {
+			input = temp;
+		}
+	}
+
+	// timing problem
+	// if the server is getting input first, it waits for data: use thread to split data aquisition from button and client
 	return this->input;
 }
 
@@ -30,9 +40,16 @@ void InputManager::update()
 	}
 	((Server*)(subject))->clearBuffer();
 
+
+
 }
 
-void InputManager::addSubject(Subject* subject)
+void InputManager::addInputObject(IInput* inputObject)
 {
-	this->subject = subject;
+	inputObjects.push_back(inputObject);
+}
+
+vector<IInput*> InputManager::getInputObjects()
+{
+	return inputObjects;
 }

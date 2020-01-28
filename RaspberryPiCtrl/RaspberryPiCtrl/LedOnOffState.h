@@ -5,11 +5,12 @@
 
 #define LED 17
 
+
 class LedOnOffState :
 	public State
 {
 public: 
-	static bool currentState;
+	static bool currentMode;
 	LedOnOffState(Handler* handler);
 	void execute();
 };

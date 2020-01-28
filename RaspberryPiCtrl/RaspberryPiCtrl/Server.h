@@ -24,16 +24,13 @@ private:
 	char buffer[128];
 
 	int setup();
-	int createSocket();
-	int bindSocket();
-	int acceptCall();
-
 
 public:
 	Server();
 	char* getBuffer();
 	void receiveData();
 	void clearBuffer();
+	void sendData(char* data);
 
 };
 
