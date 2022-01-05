@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DifferentialDrive.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Encoder.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Motor.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Odometry.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Compass.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DifferentialDrive.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Encoder.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Motor.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Odometry.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Compass.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RobotExceptions.h" />
+  </ItemGroup>
+</Project>

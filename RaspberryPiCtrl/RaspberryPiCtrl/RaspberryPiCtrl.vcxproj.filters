@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="RPiMotor.cpp">
+      <Filter>Robot\Motor</Filter>
+    </ClCompile>
+    <ClCompile Include="RPiCompassI2C.cpp">
+      <Filter>Robot\Compass</Filter>
+    </ClCompile>
+    <ClCompile Include="RPiEncoder.cpp">
+      <Filter>Robot\Encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="Server.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
+    <ClCompile Include="Robot.cpp">
+      <Filter>Robot</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>DesignPattern\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>DesignPattern\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>DesignPattern\States</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleState.cpp">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="ForwardState.cpp">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="ToRightState.cpp">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="ToLeftState.cpp">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="BackwardState.cpp">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Handler.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="AlignNorthState.cpp">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="DriveRectangleState.cpp">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="LedOnOffState.cpp">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Robot\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="IInput.cpp">
+      <Filter>Robot\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="MyFunctions.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Laucher.cpp">
+      <Filter>Launcher</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RPiMotor.h">
+      <Filter>Robot\Motor</Filter>
+    </ClInclude>
+    <ClInclude Include="RPiCompassI2C.h">
+      <Filter>Robot\Compass</Filter>
+    </ClInclude>
+    <ClInclude Include="RPiEncoder.h">
+      <Filter>Robot\Encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="Server.h">
+      <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="Robot.h">
+      <Filter>Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>DesignPattern\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>DesignPattern\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>DesignPattern\States</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleState.h">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="ForwardState.h">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="ToRightState.h">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="ToLeftState.h">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="BackwardState.h">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Handler.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="AlignNorthState.h">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="DriveRectangleState.h">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="LedOnOffState.h">
+      <Filter>DesignPattern\States\RobotStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Robot\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="IInput.h">
+      <Filter>Robot\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="MyFunctions.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="Laucher.h">
+      <Filter>Launcher</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Server">
+      <UniqueIdentifier>{f7edd787-84cf-469e-8b55-f448e38611fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot">
+      <UniqueIdentifier>{ae82d37f-d95b-4ddd-a8e2-4e9cafcc1fe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DesignPattern">
+      <UniqueIdentifier>{745c13f2-6134-4a1f-8818-53776d7d62ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DesignPattern\Observer">
+      <UniqueIdentifier>{fe25cf68-47c9-4969-8561-9de88ca5fe4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{666e0f79-9d8b-4095-b00b-bb449dde2218}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HelperClasses">
+      <UniqueIdentifier>{cb5a62ad-a952-4adc-9cef-fb5ed4a3156c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\Motor">
+      <UniqueIdentifier>{6638b05e-79ec-4811-baad-59c8213e9c74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\Encoder">
+      <UniqueIdentifier>{cee9b093-2428-485c-a527-d4b63b41e334}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\Compass">
+      <UniqueIdentifier>{c1ce837b-0f32-4a3a-a18c-81f2f59d5cdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot\Button">
+      <UniqueIdentifier>{6c3418e6-2903-4398-ad5b-16e79518167d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Launcher">
+      <UniqueIdentifier>{bd33aa06-7d0a-40bd-978b-eab4694e57fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DesignPattern\States">
+      <UniqueIdentifier>{8a815cb7-656a-44fd-b680-2b35d3883bae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DesignPattern\States\RobotStates">
+      <UniqueIdentifier>{d051ba02-605b-46a8-87a9-cb32ad036829}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
